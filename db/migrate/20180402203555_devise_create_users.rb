@@ -36,7 +36,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :last_name, null: false
       t.string :availability
       t.string :phone_number
-      t.integer :min_price
+      t.integer :price_per_hour
       t.string :city
       t.string :role, null: false
       t.references :category, foreign_key: true
