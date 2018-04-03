@@ -25,6 +25,4 @@ class ProfessionalsController < ApplicationController
   def professional_params
     params.require(:professional).permit(:user_id)
   end
-
-
 end
