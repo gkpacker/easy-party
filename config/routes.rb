@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'user_categories/edit'
-
-  patch 'user_categories/update'
-
 
   root to: 'users#index'
   devise_for :users
@@ -10,5 +6,6 @@ Rails.application.routes.draw do
     resources :professionals, only: [:show]
     resources :organizers, only: [:show]
   end
+  resources :professionals, only: [:edit, :update]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
