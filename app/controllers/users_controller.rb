@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_user!, only: :index, :show
+  skip_before_action :authenticate_user!, only: [:index, :show]
+
   def index
     @professionals = User.where(role: "Professional")
   end
@@ -22,7 +23,4 @@ class UsersController < ApplicationController
 
   private
 
-  def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :phone_number, :availability, :price_per_hour, :city, :role)
-  end
 end

@@ -6,7 +6,7 @@ class User < ApplicationRecord
   belongs_to :category
   validates :first_name, :last_name, presence: true
   validates :role, presence: true, inclusion: { in: ["Professional", "Organizer"] }
-  validates :phone_number, presence: true, uniqueness: true
+  validates :phone_number, presence: true
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 end
