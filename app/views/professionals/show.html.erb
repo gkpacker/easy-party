@@ -1,2 +1,51 @@
 <h1>Professionals#show</h1>
-<p>Find me in app/views/professionals/show.html.erb</p>
+
+
+<h2>My personnal information:</h2>
+
+<ol>
+  <li><strong>Name: </strong><%= @professional.first_name + @professional.last_name%></li>
+  <li><strong>Email: </strong><%= @professional.email %></li>
+  <li><strong>Phone Number: </strong><%= @professional.phone_number %></li>
+  <li><strong>Availability: </strong><%= @professional.availability %></li>
+  <li><strong>Skill: </strong><%= @professional.category %></li>
+  <li><strong>Price / hour: </strong><%= @professional.price_per_hour %></li>
+  <li><strong>Geographical area: </strong><%= @professional.city %></li>
+</ol>
+
+
+<h2>My next events</h2>
+
+<table>
+  <thead>
+    <th>Event</th>
+    <th>Location</th>
+    <th>Date</th>
+    <th>Price</th>
+    <th>Status:</th>
+  </thead>
+  <tbody>
+
+    <% @professional.jobs.each do |job| %>
+      <tr>
+        <td><%= job.event.title %></td>
+        <td><%= job.event.location %></td>
+        <td><%= job.event.date %></td>
+        <td><%= job.price %></td>
+        <td>
+          <% if job.accepted? %>
+            <% if job.done? %>
+              done
+            <% else %>
+              accepted
+            <% end %>
+          <% else %>
+            Acceptation pending
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
