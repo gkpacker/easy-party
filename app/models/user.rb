@@ -5,10 +5,10 @@ class User < ApplicationRecord
   has_many :jobs, foreign_key: "professional_id"
   belongs_to :category, optional: true
 
-  validates :city, presence: :true, if: :professional?
-  validates :availability, presence: :true, if: :professional?
-  validates :price_per_hour, presence: :true, if: :professional?
-  validates :category_id, presence: :true, if: :professional?
+  validates :city, presence: :true, if: :professional?, on: :update
+  validates :availability, presence: :true, if: :professional?, on: :update
+  validates :price_per_hour, presence: :true, if: :professional?, on: :update
+  validates :category_id, presence: :true, if: :professional?, on: :update
   validates :first_name, :last_name, presence: true
   validates :role, presence: true, inclusion: { in: ["Professional", "Organizer"] }
   validates :phone_number, presence: true
