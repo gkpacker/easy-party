@@ -55,13 +55,13 @@ ActiveRecord::Schema.define(version: 20180402210220) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
-    t.string "first_name", null: false
-    t.string "last_name", null: false
+    t.string "first_name"
+    t.string "last_name"
     t.string "availability"
     t.string "phone_number"
-    t.integer "min_price"
+    t.integer "price_per_hour"
     t.string "city"
-    t.string "role", null: false
+    t.string "role"
     t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
