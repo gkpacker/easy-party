@@ -1,6 +1,6 @@
 class ProfessionalsController < ApplicationController
   def show
-    @professional = User.find(params[:user_id])
+    @professional = current_user
   end
 
   def edit
@@ -21,10 +21,4 @@ class ProfessionalsController < ApplicationController
   def user_params
     params.require(:user).permit(:category_id, :availability, :price_per_hour, :city)
   end
-
-  def professional_params
-    params.require(:professional).permit(:user_id)
-  end
-
-
 end
