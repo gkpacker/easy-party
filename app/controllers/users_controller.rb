@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_user!, only: :index, :show
+  skip_before_action :authenticate_user!, only: [:index, :show]
   def index
     @professionals = User.where(role: "Professional")
   end
