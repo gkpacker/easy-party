@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.role == "Professional"
       if @user.save
-        redirect_to user_category_path(@user)
+        redirect_to edit_professional_path(@user)
       else
         redirect_to new_user_registration_path, flash: :notice
       end
