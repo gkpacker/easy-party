@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :events, foreign_key: "organizer_id"
   has_many :jobs, foreign_key: "professional_id"
-  belongs_to :category
+  belongs_to :category, optional: true
   validates :first_name, :last_name, presence: true
   validates :role, presence: true, inclusion: { in: ["Professional", "Organizer"] }
   validates :phone_number, presence: true
