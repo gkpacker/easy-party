@@ -1,1 +1,14 @@
 <%= render "users/banner" %>
+
+  <ul>
+     <% @professionals.each do |professional| %>
+      <li>
+        <%= professional.first_name %>
+        <% if professional.category.nil? %>
+        Categoria não definida
+        <% else %>
+          <%= professional.category.name %>
+        <% end %>
+      </li>
+     <% end %>
+   </ul>
