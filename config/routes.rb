@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'professionals/show'
+
   root to: 'users#index'
   devise_for :users
   resources :users, only: [:index, :show]
