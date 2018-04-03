@@ -1,8 +1,24 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
-<% if user_signed_in? %>
-    <%= link_to "logout", destroy_user_session_path, method: :delete %>
-  <% else %>
-    <%= link_to "sign up", new_user_registration_path %>
-    <%= link_to "login", new_user_session_path %>
-<% end %>
+<div class="container">
+  <h1>Home Page</h1>
+  <% if user_signed_in? %>
+      <%= current_user.first_name %>
+      <%= link_to "logout", destroy_user_session_path, method: :delete %>
+      <%= link_to "edit", edit_user_registration_path%>
+
+    <% else %>
+      <%= link_to "sign up", new_user_registration_path %>
+      <%= link_to "login", new_user_session_path %>
+  <% end %>
+  <ul>
+     <% @professionals.each do |professional| %>
+      <li>
+        <%= professional.first_name %>
+        <% if professional.category.nil? %>
+        Categoria não definida
+        <% else %>
+          <%= professional.category.name %>
+        <% end %>
+      </li>
+     <% end %>
+   </ul>
+</div>

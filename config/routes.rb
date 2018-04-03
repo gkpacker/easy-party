@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'user_categories/edit'
+
+  patch 'user_categories/update'
 
   root to: 'users#index'
   devise_for :users
