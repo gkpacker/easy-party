@@ -14,7 +14,12 @@ class ApplicationController < ActionController::Base
     if resource_or_scope.role == "Organizer"
       root_path
     else
-      user_categories_edit_path
+      user = resource_or_scope
+      if user.category_id.nil? || user.price_per_hour.nil? || user.city.nil?
+        user_categories_edit_path
+      else
+        root_path
+      end
     end
   end
 

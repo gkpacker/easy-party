@@ -16,6 +16,6 @@ class UserCategoriesController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:category_id)
+    params.require(:user).permit(:category_id, :availability, :price_per_hour, :city)
   end
 end
