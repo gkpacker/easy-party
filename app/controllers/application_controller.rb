@@ -11,7 +11,11 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource_or_scope)
-    root_path
+    if resource_or_scope.role == "Organizer"
+      root_path
+    else
+      user_categories_edit_path
+    end
   end
 
   protected
@@ -21,6 +25,12 @@ class ApplicationController < ActionController::Base
       user_params.permit(:first_name, :last_name, :phone_number,
                          :availability, :price_per_hour,:city,
                          :role, :email, :password, :password_confirmation,
+                         :category_id)
+    end
+    devise_parameter_sanitizer.permit(:account_update) do |user_params|
+      user_params.permit(:first_name, :last_name, :phone_number,
+                         :availability, :price_per_hour,:city,
+                         :role, :email, :current_password, :password, :password_confirmation,
                          :category_id)
     end
   end
