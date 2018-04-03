@@ -1,14 +1,5 @@
-<div class="container">
-  <h1>Home Page</h1>
-  <% if user_signed_in? %>
-      <%= current_user.first_name %>
-      <%= link_to "logout", destroy_user_session_path, method: :delete %>
-      <%= link_to "edit", edit_user_registration_path%>
+<%= render "users/banner" %>
 
-    <% else %>
-      <%= link_to "sign up", new_user_registration_path %>
-      <%= link_to "login", new_user_session_path %>
-  <% end %>
   <ul>
      <% @professionals.each do |professional| %>
       <li>
@@ -21,4 +12,3 @@
       </li>
      <% end %>
    </ul>
-</div>

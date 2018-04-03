@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="navbar-easy">
+    <!-- Logo -->
+    <a href="/" class="navbar-easy-brand">
+      <%= image_tag ( "logo_easy.png") %>
+    </a>
+
+    <!-- Right Navigation -->
+    <div class="navbar-easy-right hidden-xs hidden-sm">
+      <% if user_signed_in? %>
+      <a href="" class="navbar-easy-item navbar-easy-link"><%= link_to "logout", destroy_user_session_path, method: :delete %></a>
+      <% else %>
+      <a href="" class="navbar-easy-item navbar-easy-link"><%= link_to "Entrar", new_user_session_path %></a>
+      <a href="" class="navbar-easy-item navbar-easy-link"><%= link_to "Cadastrar-se", new_user_registration_path %></a>
+      <a href="" class="navbar-easy-item navbar-easy-link"><%= link_to "Seja um profissional", new_user_registration_path, class: "btn btn-primary btn-easy" %></a>
+
+      <% end %>
+
+      <!-- Profile picture with dropdown list -->
+
+    </div>
+  </div>
+</div>
+
+
