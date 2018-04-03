@@ -15,18 +15,19 @@
   </ol>
 
 
-  <h2>My next events</h2>
+  <h2>My next jobs</h2>
 
   <table class="table">
     <thead>
-      <th>Event</th>
-      <th>Location</th>
-      <th>Date</th>
-      <th>Price</th>
-      <th>Status:</th>
+      <tr>
+        <th>Event</th>
+        <th>Location</th>
+        <th>Date</th>
+        <th>Price</th>
+        <th>Status:</th>
+      </tr>
     </thead>
     <tbody>
-
       <% @professional.jobs.each do |job| %>
         <tr>
           <td><%= job.event.title %></td>
@@ -48,5 +49,6 @@
       <% end %>
     </tbody>
   </table>
+
 </div>
 
