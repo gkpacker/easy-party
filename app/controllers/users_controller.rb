@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
-
+    @professional = User.find(params[:id])
   end
 
   def new
@@ -29,4 +29,11 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  private
+
+  def professional_params
+    params.require(:user).permit(:id)
+  end
+
 end
