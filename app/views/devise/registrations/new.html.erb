@@ -6,15 +6,15 @@
       <%= simple_form_for(resource, url: user_registration_path) do |f| %>
         <%= f.error_notification %>
 
-<% if resource.errors.any? %>
-    <div class="errors-container">
-      <ul>
-        <% resource.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+        <% if resource.errors.any? %>
+          <div class="errors-container">
+            <ul>
+              <% resource.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
 
         <div class="form-inputs">
           <%= f.input :first_name, required: true, autofocus: true %>
