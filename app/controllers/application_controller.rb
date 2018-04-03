@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     else
       user = resource_or_scope
       if user.category_id.nil? || user.price_per_hour.nil? || user.city.nil?
-        edit_professional_path(user)
+        edit_professionals_path
       else
         root_path
       end
