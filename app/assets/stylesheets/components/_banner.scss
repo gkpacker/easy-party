@@ -58,15 +58,25 @@
 
 
 .field_search{
+  color: #AA184D;
   background-color: $white;
   font-size: 16px;
   padding: 19px;
-  width: 300px;
+  width: 100%;
   border-radius: 5px;
   border-radius: none;
+
   }
 
 
 .btn_search {
 
+  padding: 19px;
+  margin-left: 10px;
+
+}
+
+.search-wrapper {
+ display: flex;
+ justify-content: space-around;
 }
