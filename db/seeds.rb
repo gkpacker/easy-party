@@ -11,3 +11,17 @@ options.each do |option|
   categorie = Category.new(name: option)
   categorie.save
 end
+
+ professional1 = User.new(first_name: "Allan",
+                          last_name: "Maron",
+                          role: "Professional",
+                          phone_number:"87857485",
+                          city: "Sao paulo",
+                          availability: "seg a sex",
+                          price_per_hour: "493",
+                          category_id:1,
+                          email: "allanmaron@gmail.com",
+                          password_confirmation: "1234567",
+                          password: "1234567")
+
+professional1.save!

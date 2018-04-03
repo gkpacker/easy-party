@@ -81,12 +81,27 @@
 
 .btn-easy{
   background-color: #EF457B;
-  border: 1px solid #AA184D;
+  border: none;
   border-radius: 5px;
 
 }
 
 .btn-easy:hover {
   background-color: #AA184D;
-  border: 1px solid #AA184D;
+  border: none;
+}
+
+.search-wrapper {
+  input {
+    -webkit-appearance: textfield;
+    background-color: white;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    padding: 1px;
+    border-width: 0;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+    padding: 10px;
+  }
 }
