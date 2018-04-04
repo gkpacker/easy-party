@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def index
     if params[:category].present?
       category = Category.where("name ILIKE ?", "#{params[:category]}%")
+      @search = params[:category]
       @professionals = User.where(category_id: category.first.id)
     else
       @professionals = User.where(role: "Professional")
