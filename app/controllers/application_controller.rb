@@ -15,7 +15,6 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource_or_scope)
     if resource_or_scope.role == "Organizer"
-      root_path
     else
       user = resource_or_scope
       if user.category_id.nil? || user.price_per_hour.nil? || user.city.nil?
