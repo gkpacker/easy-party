@@ -1,6 +1,7 @@
 <div class="container">
-  <h1>Organizer dashboard</h1>
-  <h2><%= @event.title.capitalize %></h2>
+  <h2>Meu dashboard</h2>
+  <h3>Evento: <%= @event.title.capitalize %></h3>
+  <h3>Data: <%= @event.date %></h3>
   <%  @pictures.each do |picture| %>
     <%= cl_image_tag picture.picture.url, height: 100, width: 150, crop: :fill %>
   <% end %>
@@ -36,7 +37,6 @@
     </tbody>
   </table>
 
-  <p><%= link_to "Registrar mais um job", new_event_job_path(@event) %></p>
   <p><%= link_to "Editar evento", edit_event_path(@event) %></p>
   <p><%= link_to "Cancelar evento", event_path(@event), method: :delete, data: { confirm: 'Are you sure?' } %></p>
 </div>
