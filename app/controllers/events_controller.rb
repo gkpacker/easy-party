@@ -25,18 +25,23 @@ class EventsController < ApplicationController
 
 
   def edit
-    if current_user.events.find(params[:id])
-      @event = current_user.events.find(params[:id])
-    else
-      redirect_to root_path
-    end
+    @event = current_user.events.find(params[:id])
   end
 
   def update
-
+    @event = Event.new
+    @event.organizer = current_user
+    if @event.update(event_params)
+      redirect_to event_path(@event)
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
+    redirect_to organizers_path
   end
 
   private

@@ -3,4 +3,6 @@
   <%  @pictures.each do |picture| %>
     <%= cl_image_tag picture.picture.url, height: 100, width: 150, crop: :fill %>
   <% end %>
+  <%= link_to "Editar evento", edit_event_path(@event) %>
+  <%= link_to "Cancelar evento", event_path(@event), method: :delete, confirm: 'Are you sure?' %>
 </div>
