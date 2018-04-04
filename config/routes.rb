@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
 
   root to: 'users#index'
+=======
+  root to: 'pages#home'
+>>>>>>> master
   devise_for :users
   resources :users, only: [:index, :show] do
   end

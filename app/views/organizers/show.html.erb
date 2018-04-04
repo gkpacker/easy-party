@@ -16,7 +16,7 @@
 
   <ul class="list list-inline">
     <% @organizer.events.each do |event| %>
-      <li><%= event.title %></li>
+      <li><%= link_to event.title, event_path(event) %></li>
       <li><%= event.location %></li>
       <li><%= event.date %></li>
 
