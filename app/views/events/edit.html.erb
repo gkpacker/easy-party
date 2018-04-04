@@ -1,8 +1,8 @@
 <div class="container">
-  <h2 class="text-center">Crie seu evento</h2>
+  <h2 class="text-center">Editando <em><%= @event.title %></em></h2>
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
-      <%= simple_form_for(@event, url: events_path, html: { multipart: true }) do |f| %>
+      <%= simple_form_for(@event, url: event_path(@event), html: { multipart: true }) do |f| %>
         <%= render "event_form" %>
       <% end %>
     </div>
