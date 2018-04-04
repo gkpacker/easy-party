@@ -6,7 +6,7 @@ class UsersController < ApplicationController
       category = Category.where("name ILIKE ?", "#{params[:category]}%")
       @professionals = User.where(category_id: category.first.id)
     else
-      @professionals = User.all
+      @professionals = User.where(role: "Professional")
     end
   end
 
