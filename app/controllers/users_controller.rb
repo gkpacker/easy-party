@@ -2,7 +2,12 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @professionals = User.where(role: "Professional")
+    if params[:category].present?
+      category = Category.where("name ILIKE ?", "#{params[:category]}%")
+      @professionals = User.where(category_id: category.first.id)
+    else
+      @professionals = User.all
+    end
   end
 
   def show
