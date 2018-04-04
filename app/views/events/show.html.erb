@@ -16,7 +16,7 @@
       <% @event.jobs.each do |job| %>
         <tr>
           <td><%= job.professional.category.name %></td>
-          <td><%= job.price %></td>
+          <td>R$ <%= job.price %> / hora</td>
           <td>
             <% if job.accepted? %>
               <% if job.done? %>
@@ -28,13 +28,15 @@
               Acceptation pending
             <% end %>
           </td>
-          <td><%= job.professional.first_name + job.professional.last_name %></td>
+          <td><%= job.professional.first_name + " " + job.professional.last_name %></td>
+          <td><%= link_to "Cancelar job", job_path(job), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to "Editar job", edit_job_path(job) %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 
-  <%= link_to "Edit event", edit_event_path %>
-  <%= link_to "Editar evento", edit_event_path(@event) %>
-  <%= link_to "Cancelar evento", event_path(@event), method: :delete, confirm: 'Are you sure?' %>
+  <p><%= link_to "Registrar mais um job", new_event_job_path(@event) %></p>
+  <p><%= link_to "Editar evento", edit_event_path(@event) %></p>
+  <p><%= link_to "Cancelar evento", event_path(@event), method: :delete, data: { confirm: 'Are you sure?' } %></p>
 </div>

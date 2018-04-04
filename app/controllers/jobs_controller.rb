@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  before_action :find_job, only: [:edit, :update, :delete]
+  before_action :find_job, only: [:edit, :update, :destroy]
 
   def index
     @jobs = Job.select(params[:event_id])
@@ -11,6 +11,7 @@ class JobsController < ApplicationController
 
   def create
     @job = Job.new(job_params)
+    @job.save
   end
 
   def edit
@@ -18,10 +19,17 @@ class JobsController < ApplicationController
 
   def update
     if @job.update(job_params)
-      redirect_to event_path(job.event)
+      redirect_to event_path(@job.event)
+    else
+
+      render :edit
+    end
   end
 
-  def delete
+  def destroy
+    event = @job.event
+    @job.destroy
+    redirect_to event_path(event)
   end
 
   private
@@ -30,9 +38,7 @@ class JobsController < ApplicationController
     params.require(:job).permit(:event_id, :professional_id, :price, :accepted?, :done?)
   end
 
-  private
-
   def find_job
-    @job = Job.find(params[:event_id])
+    @job = Job.find(params[:id])
   end
 end
