@@ -4,6 +4,9 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :user_params, if: :devise_controller?
 
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+
+
   private
   # Overwriting the sign_out redirect path method
   def after_sign_out_path_for(resource_or_scope)
@@ -22,6 +25,12 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+
+  def record_not_found
+    flash[:alert] = "Não pode acessar essa pagina"
+    redirect_to root_path
+  end
+
 
   protected
 

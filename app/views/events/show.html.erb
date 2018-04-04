@@ -1,8 +1,42 @@
 <div class="container">
-  <%= @event.title %>
+  <h2>Meu dashboard</h2>
+  <h3>Evento: <%= @event.title.capitalize %></h3>
+  <h3>Data: <%= @event.date %></h3>
   <%  @pictures.each do |picture| %>
     <%= cl_image_tag picture.picture.url, height: 100, width: 150, crop: :fill %>
   <% end %>
-  <%= link_to "Editar evento", edit_event_path(@event) %>
-  <%= link_to "Cancelar evento", event_path(@event), method: :delete, confirm: 'Are you sure?' %>
+
+  <table class="table">
+    <thead>
+      <th>Job</th>
+      <th>Price</th>
+      <th>Status:</th>
+      <th>Professional:</th>
+    </thead>
+    <tbody>
+      <% @event.jobs.each do |job| %>
+        <tr>
+          <td><%= job.professional.category.name %></td>
+          <td>R$ <%= job.price %> / hora</td>
+          <td>
+            <% if job.accepted? %>
+              <% if job.done? %>
+                done
+              <% else %>
+                accepted
+              <% end %>
+            <% else %>
+              Acceptation pending
+            <% end %>
+          </td>
+          <td><%= job.professional.first_name + " " + job.professional.last_name %></td>
+          <td><%= link_to "Cancelar job", job_path(job), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to "Editar job", edit_job_path(job) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <p><%= link_to "Editar evento", edit_event_path(@event) %></p>
+  <p><%= link_to "Cancelar evento", event_path(@event), method: :delete, data: { confirm: 'Are you sure?' } %></p>
 </div>
