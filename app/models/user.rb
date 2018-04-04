@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  mount_uploader :photo, PhotoUploader
+
   has_many :events, foreign_key: "organizer_id"
   has_many :jobs, foreign_key: "professional_id"
   belongs_to :category, optional: true

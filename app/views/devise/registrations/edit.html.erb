@@ -11,6 +11,8 @@
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
             <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
           <% end %>
+          <%= f.input :photo %>
+          <%= f.input :photo_cache, as: :hidden %>
           <% if resource.role == "Professional" %>
             <%= f.association :category, required: true %>
             <%= f.input :availability, collection: [["Seg a Sex", 0], ["Finais de semana", 1]], as: :radio_buttons %>
