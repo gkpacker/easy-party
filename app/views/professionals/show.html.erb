@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Professional dashboard</h1>
-
-
+  <%= link_to "Edit profile", edit_user_registration_path %>
+  <%= cl_image_tag @professional.photo, height: 300, width: 400, crop: :fill %>
   <h2>My personnal information:</h2>
 
   <ol class="list-unstyled">

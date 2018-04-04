@@ -19,6 +19,6 @@ class ProfessionalsController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:category_id, :availability, :price_per_hour, :city)
+    params.require(:user).permit(:category_id, :availability, :price_per_hour, :city, :photo)
   end
 end

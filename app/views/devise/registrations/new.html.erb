@@ -19,6 +19,8 @@
         <div class="form-inputs">
           <%= f.input :first_name, required: true, autofocus: true %>
           <%= f.input :last_name, required: true %>
+          <%= f.file_field :photo %>
+          <%= f.input :photo_cache, as: :hidden %>
           <%= f.input :phone_number, required: true %>
           <%= f.select :role, ["Professional", "Organizer"], required: true %>
           <%= f.input :email, required: true %>

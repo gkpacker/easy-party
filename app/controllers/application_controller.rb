@@ -30,13 +30,13 @@ class ApplicationController < ActionController::Base
       user_params.permit(:first_name, :last_name, :phone_number,
                          :availability, :price_per_hour,:city,
                          :role, :email, :password, :password_confirmation,
-                         :category_id)
+                         :category_id, :photo)
     end
     devise_parameter_sanitizer.permit(:account_update) do |user_params|
       user_params.permit(:first_name, :last_name, :phone_number,
                          :availability, :price_per_hour,:city,
                          :role, :email, :current_password, :password, :password_confirmation,
-                         :category_id)
+                         :category_id, :photo)
     end
   end
 end
