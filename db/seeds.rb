@@ -17,8 +17,8 @@ puts "Done ! #{options.count} categories added to the database."
 organizers = []
 10.times do
   organizer = User.new
-  organizer.first_name = Faker::Name.first_name
-  organizer.last_name = Faker::Name.last_name
+  organizer.first_name = Faker::Name.first_name.capitalize
+  organizer.last_name = Faker::Name.last_name.capitalize
   organizer.email = Faker::Internet.email
   organizer.password = "123456"
   organizer.phone_number = Faker::PhoneNumber.phone_number
@@ -52,7 +52,7 @@ titles = ["despedida de solteiro de ", "aniversario de ", "casamento de", "cockt
 5.times do
   event = Event.new
   event.organizer = User.where(role: "Organizer").sample
-  event.title = "#{titles.sample} #{Faker::Name.first_name}"
+  event.title = "#{titles.sample} #{Faker::Name.first_name.capitalize}"
   event.date = Faker::Date.forward(60)
   event.location = %w(Pinheiros Morumbi Itaim Campinas Sorocaba Santos Jardins).sample
   event.description = Faker::Lorem.paragraph
