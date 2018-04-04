@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
-
+    @professional = User.find(params[:id])
   end
 
   def new
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.role == "Professional"
       if @user.save
-        redirect_to edit_professionals_path
+        redirect_to edit_professionals_path(@user)
       else
         redirect_to new_user_registration_path, flash: :notice
       end
@@ -29,4 +29,11 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  private
+
+  def professional_params
+    params.require(:user).permit(:id)
+  end
+
 end

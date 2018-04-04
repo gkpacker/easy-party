@@ -1,3 +1,10 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-<%= link_to "back to home", root_path %>
+<div class="container">
+  <h3>Saiba mais sobre <%= @professional.first_name + " " + @professional.last_name %></h3>
+
+  <h4>Especialidade: <%= @professional.category.name %></h4>
+  <h4>Disponibilidade: <%= @professional.availability %></h4>
+  <h4>Tarifa: R$ <%= @professional.price_per_hour %> por hora</h4>
+  <h4>Area de atuação: <%= @professional.city %></h4>
+
+  <%= link_to "back to home", root_path %>
+</div>
