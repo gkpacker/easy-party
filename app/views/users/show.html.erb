@@ -1,10 +1,12 @@
 <div class="container">
   <h3>Saiba mais sobre <%= @professional.first_name + " " + @professional.last_name %></h3>
-
+  <% unless @professional.category.nil? %>
   <h4>Especialidade: <%= @professional.category.name %></h4>
   <h4>Disponibilidade: <%= @professional.availability %></h4>
   <h4>Tarifa: R$ <%= @professional.price_per_hour %> por hora</h4>
   <h4>Area de atuação: <%= @professional.city %></h4>
+  <% end %>
 
-  <%= link_to "back to home", root_path %>
+  <p><%= link_to "Back to home", root_path %></p>
+  <p><%= link_to "Enviar uma proposta de job", new_user_job_path(@professional) %></p>
 </div>
