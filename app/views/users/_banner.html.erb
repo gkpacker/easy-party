@@ -2,9 +2,9 @@
   <div class="banner-content">
     <h1>Surpreenda seus convidados</h1>
     <p>Os melhores serviços para seus eventos</p>
-    <form>
+    <form action="<%= users_path %>">
       <div class="search-wrapper">
-        <input type="search"  class="field_search">
+        <input type="text" name="category" class="field_search">
         <button class="btn btn-primary btn_search btn-easy">Buscar</button>
       </div>
     </form>
