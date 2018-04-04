@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :user_params, if: :devise_controller?
 
-  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  # rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
 
   private
@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource_or_scope)
     if resource_or_scope.role == "Organizer"
+      root_path
     else
       user = resource_or_scope
       if user.category_id.nil? || user.price_per_hour.nil? || user.city.nil?

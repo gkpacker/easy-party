@@ -7,11 +7,16 @@ class JobsController < ApplicationController
 
   def new
     @job = Job.new
+    @events = current_user.events
+    @user = User.find(params[:user_id])
   end
 
   def create
     @job = Job.new(job_params)
+    @job.event_id = params[:job][:event]
+    @job.professional = User.find(params[:user_id])
     @job.save
+    redirect_to event_path(@job.event)
   end
 
   def edit
@@ -21,7 +26,6 @@ class JobsController < ApplicationController
     if @job.update(job_params)
       redirect_to event_path(@job.event)
     else
-
       render :edit
     end
   end
@@ -35,7 +39,7 @@ class JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:event_id, :professional_id, :price, :accepted?, :done?)
+    params.require(:job).permit(:event_id, :price, :accepted?, :done?)
   end
 
   def find_job
