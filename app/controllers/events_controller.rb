@@ -1,7 +1,8 @@
 class EventsController < ApplicationController
 
   def show
-    @event = Event.find(params[:id])
+    @event = current_user.events.find(params[:id])
+
     @pictures = @event.pictures.all
   end
 
@@ -49,5 +50,7 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:title, :date, :location, :description, :organizer_id, :pictures['picture'])
   end
+
+
 
 end
