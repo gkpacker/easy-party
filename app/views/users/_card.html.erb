@@ -1,9 +1,23 @@
-<div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/shanghai');">
-  <div class="card-category"><%= professional.first_name %></div>
-  <div class="card-description">
-    <h2><%= professional.city %></h2>
-    <p><%= professional.first_name %></p>
+
+<%= link_to user_path(professional), class: "card-link" do %>
+  <div class="card" >
+    <div class="row">
+      <div class="col-xs-6 card-profile">
+        <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
+      </div>
+
+      <div class="col-xs-6">
+        <div>
+          <p class="card-name"><strong><%= professional.first_name %> <%= professional.last_name %></strong></p>
+          <p class="card-category"><%= professional.category.name %></p>
+          <p><%= professional.city %></p>
+          <p>R$ <%= professional.price_per_hour %></p>
+        </div>
+      </div>
+
   </div>
-  <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
-  <%= link_to "", user_path(professional), class: "card-link" %>
 </div>
+<% end %>
+
+
+
