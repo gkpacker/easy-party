@@ -4,7 +4,11 @@ class UsersController < ApplicationController
   def index
     if params[:query].present?
       @search = params[:query]
-      @results = policy_scope(User).search(params[:query])
+      if params[:filter_query].present?
+      @results = User.search(params[:query]).filter(params[:filter_query])
+      else
+      @results = User.search(params[:query])
+      end
     else
       @search = params[:query]
       @results = policy_scope(User).where(role: "Profissional").order(:created_at).last(10).reverse
@@ -21,7 +25,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.role == "Professional"
+    if @user.role == "Profissional"
       if @user.save
         redirect_to edit_professionals_path(@user)
       else
