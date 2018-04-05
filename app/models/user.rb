@@ -32,4 +32,12 @@ class User < ApplicationRecord
   def professional?
     role == "Profissional"
   end
+
+  def to_param
+    "#{id}-#{full_name.parameterize}"
+  end
+
+  def full_name
+    first_name + " " + last_name
+  end
 end

@@ -1,5 +1,5 @@
-<%= simple_form_for [@user, @job] do |f| %>
+<%= simple_form_for [@professional, @job] do |f| %>
   <%= f.input :price %>
-  <%= f.input :event, collection: @events %>
+  <%= f.association :event, collection: @events %>
   <%= f.button :submit %>
 <% end %>
