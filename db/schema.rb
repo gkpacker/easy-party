@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20180404125228) do
 
   create_table "jobs", force: :cascade do |t|
     t.float "price", null: false
-    t.boolean "accepted", default: false, null: false
+    t.boolean "accepted"
     t.boolean "done", default: false, null: false
     t.bigint "event_id"
     t.bigint "professional_id"

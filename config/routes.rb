@@ -13,5 +13,9 @@ Rails.application.routes.draw do
   end
 
   resource :organizers, only: [:show]
+
+  patch "jobs/:id/accept", to: "jobs#accept"
+
+  patch "jobs/:id/decline", to: "jobs#decline"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
