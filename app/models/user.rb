@@ -5,6 +5,8 @@ class User < ApplicationRecord
 
   has_many :events, foreign_key: "organizer_id"
   has_many :jobs, foreign_key: "professional_id"
+  has_many :ratings, foreign_key: "professional_id"
+  has_many :ratings, foreign_key: "organizer_id"
   belongs_to :category, optional: true
 
   validates :city, presence: :true, if: :professional?, on: :update
