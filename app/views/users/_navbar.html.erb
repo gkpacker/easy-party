@@ -8,11 +8,10 @@
     <!-- Right Navigation -->
     <div class="navbar-easy-right hidden-xs hidden-sm">
       <% if user_signed_in? %>
-        <% if current_user.role == "Professional" %>
+        <% if current_user.role == "Profissional" %>
           <%= link_to "Perfil", professionals_path, class: "navbar-easy-item navbar-easy-link" %>
         <% else %>
           <%= link_to "Perfil", organizers_path, class: "navbar-easy-item navbar-easy-link" %>
-          <%= link_to "Novo evento", new_event_path, class: "navbar-easy-item navbar-easy-link" %>
         <% end %>
         <%= link_to "Sair", destroy_user_session_path, method: :delete, class: "navbar-easy-item navbar-easy-link" %>
       <% else %>
