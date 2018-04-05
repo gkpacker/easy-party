@@ -42,7 +42,7 @@ professionals = []
   professional.price_per_hour = %w(20 30 40 50 60 70 80 90 100).sample.to_i
   professional.city = %w(Pinheiros Morumbi Itaim Campinas Sorocaba Santos Jardins).sample
   professional.category = Category.all.sample
-  professional.save
+  professional.save!
   professionals << professional
 end
 puts "Done ! #{professionals.count} professionals added to the User database."
@@ -56,7 +56,7 @@ titles = ["despedida de solteiro de ", "aniversario de ", "casamento de", "cockt
   event.date = Faker::Date.forward(60)
   event.location = %w(Pinheiros Morumbi Itaim Campinas Sorocaba Santos Jardins).sample
   event.description = Faker::Lorem.paragraph
-  event.save
+  event.save!
   events << event
 end
 puts "Done ! #{events.count} events added to the database."
