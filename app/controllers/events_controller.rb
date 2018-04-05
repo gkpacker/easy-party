@@ -15,8 +15,10 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.organizer = current_user
     if @event.save
-      params[:pictures]['picture'].each do |a|
-        @pictures = @event.pictures.create!(:picture => a)
+      if params[:pictures].present?
+        params[:pictures]['picture'].each do |a|
+          @pictures = @event.pictures.create!(:picture => a)
+        end
       end
       redirect_to event_path(@event)
     else
