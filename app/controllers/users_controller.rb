@@ -5,14 +5,19 @@ class UsersController < ApplicationController
     if params[:query].present?
       @search = params[:query]
       if params[:order_query].present?
-        @results = policy_scope(User).search(params[:query]).order(params[:order_query])
-        raise
+        order_param = params[:order_query]
+        @results = policy_scope(User).search(params[:query]).order(order_param).reverse
       else
         @results = policy_scope(User).search(params[:query])
       end
     else
       @search = params[:query]
-      @results = policy_scope(User).where(role: "Profissional").order(:created_at).last(10).reverse
+      if params[:order_query].present?
+        order_param = params[:order_query]
+        @results = policy_scope(User).where(role: "Profissional").order(order_param).last(10)
+      else
+        @results = policy_scope(User).where(role: "Profissional").order(:created_at).last(10).reverse
+      end
     end
   end
 

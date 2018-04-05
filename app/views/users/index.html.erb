@@ -6,7 +6,9 @@
     <div class="col-xs-3 col-sm-3">
 
     <div class="search-filter">
-      <%= link_to "Nome", user_path(params.merge(order_query: "teste")), class: "btn btn-sm btn-easy" %>
+      <%= link_to "Nome", users_path(request.params.merge(order_query: "first_name")), class: "btn btn-sm btn-warning" %>
+      <%= link_to "Cidade", users_path(request.params.merge(order_query: "city")), class: "btn btn-sm btn-warning" %>
+
     </div>
 
 
