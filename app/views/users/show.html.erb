@@ -1,10 +1,21 @@
 <div class="container">
   <h3>Saiba mais sobre <%= @professional.first_name + " " + @professional.last_name %></h3>
   <% unless @professional.category.nil? %>
-  <h4>Especialidade: <%= @professional.category.name %></h4>
-  <h4>Disponibilidade: <%= @professional.availability %></h4>
-  <h4>Tarifa: R$ <%= @professional.price_per_hour %> por hora</h4>
-  <h4>Area de atuação: <%= @professional.city %></h4>
+    <h4><strong>Especialidade: </strong><%= @professional.category.name %></h4>
+    <h4><strong>Disponibilidade: </strong><%= @professional.availability %></h4>
+    <h4><strong>Tarifa: </strong> R$ <%= @professional.price_per_hour %> por hora</h4>
+    <h4><strong>Area de atuação: </strong><%= @professional.city %></h4>
+    <h4><strong>Comentarios de outros organizadores de eventos:</strong></h4>
+    <% if @jobs != [] %>
+      <% @jobs.each do |job| %>
+      <p>----------------------------------------------------------</p>
+        <p>Rating de <strong><%= job.event.organizer.first_name + " " + job.event.organizer.last_name %></strong>, quem trabalhou com <strong><%= @professional.first_name %></strong> para seu evento no <strong><%= job.event.date %></strong></p>
+        <p><strong>Nota : </strong><%= job.rating %></p>
+        <p><strong>Comentario : </strong><%= job.comment %></p>
+      <% end %>
+    <% else %>
+      <p><em><%= @professional.first_name %> ainda não tem sido avaliado!</em></p>
+    <% end %>
   <% end %>
 
   <p><%= link_to "Back to home", root_path %></p>
