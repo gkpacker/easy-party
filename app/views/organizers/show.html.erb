@@ -3,12 +3,12 @@
     <div class="col-md-6">
       <div class="organizer-profile-wrap">
 
-      <%= cl_image_tag @organizer.photo, height: 300, width: 400, crop: :fill %>
+      <%= cl_image_tag @organizer.photo, width: 200, height: 200, crop: :fill, class: "profile-pic"%>
       <div class="head-organizer-profile">
-        <h3>Perfil : <%= link_to edit_user_registration_path do %>
+        <h4>Perfil : <%= link_to edit_user_registration_path do %>
           <i class="fa fa-pencil edit-icon" aria-hidden="true"></i>
           <% end %>
-        </h3>
+        </h4>
 
        </div>
 
