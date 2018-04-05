@@ -2,18 +2,20 @@ class EventsController < ApplicationController
 
   def show
     @event = current_user.events.find(params[:id])
-
+    authorize @event
     @pictures = @event.pictures.all
   end
 
   def new
     @event = Event.new
+    authorize @event
     @pictures = @event.pictures.build
   end
 
   def create
     @event = Event.new(event_params)
     @event.organizer = current_user
+    authorize @event
     if @event.save
       if params[:pictures].present?
         params[:pictures]['picture'].each do |a|

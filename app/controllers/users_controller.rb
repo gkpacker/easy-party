@@ -1,23 +1,18 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-
+  before_action :skip_authorization, only: [:show]
   def index
     if params[:query].present?
       @search = params[:query]
-      @results = User.search(params[:query])
+      @results = policy_scope(User).search(params[:query])
     else
       @search = params[:query]
-      @results = User.where(role: "Profissional").order(:created_at).last(10).reverse
+      @results = policy_scope(User).where(role: "Profissional").order(:created_at).last(10).reverse
     end
   end
 
   def show
-    @jobs = Job.where(professional_id: params[:id])
-    if params[:id] != "sign_out"
-      @professional = User.find(params[:id])
-    else
-      redirect_to root_path
-    end
+    @professional = User.find(params[:id])
   end
 
   def new
