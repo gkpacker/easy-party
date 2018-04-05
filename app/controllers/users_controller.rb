@@ -2,12 +2,20 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    if params[:category].present?
-      category = Category.where("name ILIKE ?", "#{params[:category]}%")
-      @search = params[:category]
-      @professionals = User.where(category_id: category.first.id)
+    if params[:query].present?
+      @search = params[:query]
+      results = PgSearch.multisearch(params[:query])
+      @professionals = []
+      results.each do |result|
+        if result.searchable_type == "User"
+          @professionals << result.searchable
+        elsif result.searchable_type == "Category"
+          @professionals << User.where(category_id: result.searchable.id)
+        end
+      end
+
     else
-      @search = params[:category]
+      @search = params[:query]
       @professionals = User.where(role: "Professional").order(:created_at).last(10).reverse
     end
   end
