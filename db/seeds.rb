@@ -23,7 +23,7 @@ organizers = []
   organizer.password = "123456"
   organizer.phone_number = Faker::PhoneNumber.phone_number
   organizer.role = "Organizador"
-  organizer.save!
+  organizer.save
   organizers << organizer
 end
 puts "Done ! #{organizers.count} organizers added to the User database."
@@ -68,7 +68,7 @@ jobs = []
   job.price = %w(20 30 40 50 60 70 80 90 100).sample.to_i
   job.event = Event.all.sample
   job.professional = User.where(role: "Profissional").sample
-  job.save!
+  job.save
   jobs << job
 end
 puts "Done ! #{jobs.count} jobs added to the database."
