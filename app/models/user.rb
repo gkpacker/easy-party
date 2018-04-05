@@ -29,6 +29,15 @@ class User < ApplicationRecord
       tsearch: { prefix: true }
     }
 
+  # pg_search_scope :order_query,
+  #   against: [ :city, :first_name, :last_name ],
+  #   associated_against: {
+  #     category: [ :name ]
+  #   },
+  #   using: {
+  #     tsearch: { prefix: true }
+  #   }
+
   def professional?
     role == "Profissional"
   end

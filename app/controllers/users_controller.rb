@@ -1,13 +1,23 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :skip_authorization, only: [:show]
+  before_action :skip_authorization, only: [:index, :show]
   def index
     if params[:query].present?
       @search = params[:query]
-      @results = policy_scope(User).search(params[:query])
+      if params[:order_query].present?
+        order_param = params[:order_query]
+        @results = policy_scope(User).search(params[:query]).order(order_param).reverse
+      else
+        @results = policy_scope(User).search(params[:query])
+      end
     else
       @search = params[:query]
-      @results = policy_scope(User).where(role: "Profissional").order(:created_at).last(10).reverse
+      if params[:order_query].present?
+        order_param = params[:order_query]
+        @results = policy_scope(User).where(role: "Profissional").order(order_param).last(10)
+      else
+        @results = policy_scope(User).where(role: "Profissional").order(:created_at).last(10).reverse
+      end
     end
   end
 
@@ -21,7 +31,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.role == "Professional"
+    if @user.role == "Profissional"
       if @user.save
         redirect_to edit_professionals_path(@user)
       else
