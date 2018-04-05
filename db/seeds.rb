@@ -22,7 +22,7 @@ organizers = []
   organizer.email = Faker::Internet.email
   organizer.password = "123456"
   organizer.phone_number = Faker::PhoneNumber.phone_number
-  organizer.role = "Organizer"
+  organizer.role = "Organizador"
   organizer.save
   organizers << organizer
 end
@@ -36,7 +36,7 @@ professionals = []
   professional.email = Faker::Internet.email
   professional.password = "123456"
   professional.phone_number = Faker::PhoneNumber.phone_number
-  professional.role = "Professional"
+  professional.role = "Profissional"
   random_number = (1..8).to_a.sample
   professional.availability = %w(segunda terça quarta quinta sexta sabado domingo fds).sample(random_number)
   professional.price_per_hour = %w(20 30 40 50 60 70 80 90 100).sample.to_i
@@ -51,7 +51,7 @@ events = []
 titles = ["despedida de solteiro de ", "aniversario de ", "casamento de", "cocktail para", "housewarming de"]
 5.times do
   event = Event.new
-  event.organizer = User.where(role: "Organizer").sample
+  event.organizer = User.where(role: "Organizador").sample
   event.title = "#{titles.sample} #{Faker::Name.first_name.capitalize}"
   event.date = Faker::Date.forward(60)
   event.location = %w(Pinheiros Morumbi Itaim Campinas Sorocaba Santos Jardins).sample
@@ -67,7 +67,7 @@ jobs = []
   job = Job.new
   job.price = %w(20 30 40 50 60 70 80 90 100).sample.to_i
   job.event = Event.all.sample
-  job.professional = User.where(role: "Professional").sample
+  job.professional = User.where(role: "Profissional").sample
   job.save
   jobs << job
 end

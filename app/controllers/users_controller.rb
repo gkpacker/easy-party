@@ -4,19 +4,10 @@ class UsersController < ApplicationController
   def index
     if params[:query].present?
       @search = params[:query]
-      results = PgSearch.multisearch(params[:query])
-      @professionals = []
-      results.each do |result|
-        if result.searchable_type == "User"
-          @professionals << result.searchable
-        elsif result.searchable_type == "Category"
-          @professionals << User.where(category_id: result.searchable.id)
-        end
-      end
-
+      @results = User.search(params[:query])
     else
       @search = params[:query]
-      @professionals = User.where(role: "Professional").order(:created_at).last(10).reverse
+      @results = User.where(role: "Profissional").order(:created_at).last(10).reverse
     end
   end
 
