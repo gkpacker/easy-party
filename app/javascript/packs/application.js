@@ -9,5 +9,5 @@ if (document.querySelector(".field_search")) {
 
 flatpickr(".datepicker", {
   enableTime: true,
-  dateFormat: "d-m-Y H:i",
+  dateFormat: "d/m/Y H:i",
 });
