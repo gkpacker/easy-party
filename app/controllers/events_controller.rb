@@ -24,10 +24,9 @@ class EventsController < ApplicationController
       end
       redirect_to event_path(@event)
     else
-      render :new
+      redirect_to organizers_path
     end
   end
-
 
   def edit
     @event = current_user.events.find(params[:id])
@@ -57,7 +56,4 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:title, :date, :location, :description, :organizer_id, :pictures['picture'])
   end
-
-
-
 end

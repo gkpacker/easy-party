@@ -34,6 +34,7 @@ professionals = []
   professional.first_name = Faker::Name.first_name
   professional.last_name = Faker::Name.last_name
   professional.email = Faker::Internet.email
+  professional.photo = Faker::LoremPixel.image
   professional.password = "123456"
   professional.phone_number = Faker::PhoneNumber.phone_number
   professional.role = "Profissional"
