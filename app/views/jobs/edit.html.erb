@@ -1,1 +1,5 @@
-<%= render "job_form" %>
+<% if @job.done? %>
+  <%= render "new_review_form" %>
+<% else %>
+  <%= render "job_form" %>
+<% end %>
