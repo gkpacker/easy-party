@@ -1,13 +1,14 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :skip_authorization, only: [:show]
+  before_action :skip_authorization, only: [:index, :show]
   def index
     if params[:query].present?
       @search = params[:query]
-      if params[:filter_query].present?
-      @results = User.search(params[:query]).filter(params[:filter_query])
+      if params[:order_query].present?
+        @results = policy_scope(User).search(params[:query]).order(params[:order_query])
+        raise
       else
-      @results = User.search(params[:query])
+        @results = policy_scope(User).search(params[:query])
       end
     else
       @search = params[:query]
