@@ -12,12 +12,15 @@ class User < ApplicationRecord
   validates :price_per_hour, presence: :true, if: :professional?, on: :update
   validates :category_id, presence: :true, if: :professional?, on: :update
   validates :first_name, :last_name, presence: true
-  validates :role, presence: true, inclusion: { in: ["Professional", "Organizer"] }
+  validates :role, presence: true, inclusion: { in: ["Profissional", "Organizador"] }
   validates :phone_number, presence: true
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  include PgSearch
+  multisearchable against: [ :city ]
+
   def professional?
-    role == "Professional"
+    role == "Profissional"
   end
 end

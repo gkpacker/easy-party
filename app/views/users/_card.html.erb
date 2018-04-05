@@ -1,9 +1,11 @@
-
+<% if professional.class != User %>
+  <% professional = professional[0] %>
+<% end %>
 <%= link_to user_path(professional), class: "card-link" do %>
   <div class="card" >
     <div class="row">
       <div class="col-xs-4 card-profile">
-        <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
+        <%= cl_image_tag professional.photo, width: 140, height: 140, crop: :thumb, gravity: :face %>
       </div>
 
       <div class="col-xs-4 card-information">
@@ -20,9 +22,8 @@
 
         </div>
       </div>
-
+    </div>
   </div>
-</div>
 <% end %>
 
 

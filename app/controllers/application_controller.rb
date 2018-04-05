@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource_or_scope)
-    if resource_or_scope.role == "Organizer"
+    if resource_or_scope.role == "Organizador"
       root_path
     else
       user = resource_or_scope

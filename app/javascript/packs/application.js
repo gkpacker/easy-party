@@ -1,7 +1,8 @@
 import "bootstrap";
+
 import { loadDynamicBannerText } from '../components/banner';
+import '../plugins/datepicker';
 
-loadDynamicBannerText();
-
-
-
+if (document.querySelector(".field_search")) {
+  loadDynamicBannerText();
+}
