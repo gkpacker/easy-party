@@ -20,4 +20,16 @@ class UserPolicy < ApplicationPolicy
   def new?
     create?
   end
+
+  def update?
+    @record == @user
+  end
+
+  def edit?
+    update?
+  end
+
+  def destroy?
+    @record == @user
+  end
 end
