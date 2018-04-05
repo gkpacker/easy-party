@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  before_action :find_job, only: [:edit, :update, :destroy]
+  before_action :find_job, only: [:edit, :update, :destroy, :accept, :decline]
 
   def index
     @jobs = Job.select(params[:event_id])
@@ -34,6 +34,18 @@ class JobsController < ApplicationController
     event = @job.event
     @job.destroy
     redirect_to event_path(event)
+  end
+
+  def accept
+    @job.accepted = true
+    @job.save!
+    redirect_to professionals_path
+  end
+
+  def decline
+    @job.accepted = false
+    @job.save!
+    redirect_to professionals_path
   end
 
   private

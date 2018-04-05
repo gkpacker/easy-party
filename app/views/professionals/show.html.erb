@@ -37,12 +37,16 @@
           <td>
             <% if job.accepted? %>
               <% if job.done? %>
-                done
+                <p>done</p>
               <% else %>
-                accepted
+                <p><i class="fa fa-check-square-o" aria-hidden="true"></i>  Accepted</p>
               <% end %>
+            <% elsif job.accepted == false %>
+                <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>  Declined</p>
             <% else %>
-              Acceptation pending
+              <p>Você quer aceitar esse job ?</p>
+              <%= link_to  "Aceitar", "jobs/#{job.id}/accept", method: :patch, class: "btn btn-success" %>
+              <%= link_to "Recusar", "jobs/#{job.id}/decline", method: :patch, class: "btn btn-danger" %>
             <% end %>
           </td>
         </tr>
