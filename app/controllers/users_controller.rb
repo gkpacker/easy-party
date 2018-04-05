@@ -7,7 +7,8 @@ class UsersController < ApplicationController
       @search = params[:category]
       @professionals = User.where(category_id: category.first.id)
     else
-      @professionals = User.where(role: "Professional")
+      @search = params[:category]
+      @professionals = User.where(role: "Professional").order(:created_at).last(10).reverse
     end
   end
 

@@ -14,12 +14,21 @@
 
 
     <div class="col-xs-9 col-sm-9">
+        <% if @search == "" %>
+          <h4><%= @professionals.length %> Profissionais mais recentes</h4>
+          <% @professionals.each do |professional| %>
+            <div class="col-xs-12 col-sm-12">
+              <%= render "card", professional: professional %>
+            </div>
+          <% end %>
 
-        <h4><%= @professionals.length %> resultados  pa <i>"<%= @search %>"</i> </h4>
-        <% @professionals.each do |professional| %>
-          <div class="col-xs-12 col-sm-12">
-            <%= render "card", professional: professional %>
-          </div>
+        <% else %>
+          <h4><%= @professionals.length %> resultados para: <i>"<%= @search %>"</i> </h4>
+          <% @professionals.each do |professional| %>
+            <div class="col-xs-12 col-sm-12">
+              <%= render "card", professional: professional %>
+            </div>
+          <% end %>
         <% end %>
 
 
