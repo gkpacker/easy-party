@@ -25,7 +25,8 @@
       <div class="organizer-events-wrap">
         <div class="head-organizer-events">
         <h3>Meus eventos</h3>
-        <p><%= link_to "Novo evento", new_event_path, class: "navbar-easy-item navbar-easy-link btn-new-event" %></p>
+
+        <button type="button" class="navbar-easy-item navbar-easy-link btn-new-event" data-toggle="modal" data-target=".bs-example-modal-lg">Novo evento</button>
       </div>
 
     <table class="table">
@@ -48,3 +49,14 @@
     </div>
   </div>
 </div>
+
+
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <%= render template: "events/new" %>
+    </div>
+  </div>
+</div>
+

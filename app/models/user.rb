@@ -5,6 +5,8 @@ class User < ApplicationRecord
 
   has_many :events, foreign_key: "organizer_id"
   has_many :jobs, foreign_key: "professional_id"
+  has_many :ratings, foreign_key: "professional_id"
+  has_many :ratings, foreign_key: "organizer_id"
   belongs_to :category, optional: true
 
   validates :city, presence: :true, if: :professional?, on: :update
@@ -29,5 +31,13 @@ class User < ApplicationRecord
 
   def professional?
     role == "Profissional"
+  end
+
+  def to_param
+    "#{id}-#{full_name.parameterize}"
+  end
+
+  def full_name
+    first_name + " " + last_name
   end
 end

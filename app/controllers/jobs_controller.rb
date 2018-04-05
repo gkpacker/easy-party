@@ -1,28 +1,33 @@
 class JobsController < ApplicationController
   before_action :find_job, only: [:edit, :update, :destroy, :accept, :decline]
-
+  before_action :set_events, only: [:new, :edit]
   def index
     @jobs = Job.select(params[:event_id])
   end
 
   def new
     @job = Job.new
+    authorize @job
     @events = current_user.events
-    @user = User.find(params[:user_id])
+    @professional = User.find(params[:user_id])
+    @user = current_user
   end
 
   def create
     @job = Job.new(job_params)
-    @job.event_id = params[:job][:event]
     @job.professional = User.find(params[:user_id])
+    authorize @job
     @job.save
     redirect_to event_path(@job.event)
   end
 
   def edit
+    @user = current_user
+    authorize @job
   end
 
   def update
+    authorize @job
     if @job.update(job_params)
       redirect_to event_path(@job.event)
     else
@@ -32,6 +37,7 @@ class JobsController < ApplicationController
 
   def destroy
     event = @job.event
+    authorize @job
     @job.destroy
     redirect_to event_path(event)
   end
@@ -56,5 +62,9 @@ class JobsController < ApplicationController
 
   def find_job
     @job = Job.find(params[:id])
+  end
+
+  def set_events
+    @events = policy_scope(Event)
   end
 end

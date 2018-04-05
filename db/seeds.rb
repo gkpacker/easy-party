@@ -10,9 +10,9 @@ require 'faker'
 options = ["Animação de Festas", "Assessor de Eventos", "Bandas e cantores", "Bartenders", "Brindes e lembrancinhas", "Buffet completo", "Churrasqueiro", "Confeiteira", "Decoração", "Djs", "Equipamento para festas", "Fotografia", "Garçons e Copeiras", "Gravação de vídeos", "Recepcionistas e cerimonialistas", "Segurança"]
 options.each do |option|
   categorie = Category.new(name: option)
-  categorie.save
+  categorie.save!
 end
-puts "Done ! #{options.count} categories added to the database."
+puts "Done ! #{Category.all.count} categories added to the database."
 
 organizers = []
 10.times do
@@ -23,10 +23,10 @@ organizers = []
   organizer.password = "123456"
   organizer.phone_number = Faker::PhoneNumber.phone_number
   organizer.role = "Organizador"
-  organizer.save
+  organizer.save!
   organizers << organizer
 end
-puts "Done ! #{organizers.count} organizers added to the User database."
+puts "Done ! #{User.where(role: 'Organizador').count} organizers added to the User database."
 
 professionals = []
 20.times do
@@ -34,6 +34,7 @@ professionals = []
   professional.first_name = Faker::Name.first_name
   professional.last_name = Faker::Name.last_name
   professional.email = Faker::Internet.email
+  professional.photo = Faker::LoremPixel.image
   professional.password = "123456"
   professional.phone_number = Faker::PhoneNumber.phone_number
   professional.role = "Profissional"
@@ -45,7 +46,7 @@ professionals = []
   professional.save!
   professionals << professional
 end
-puts "Done ! #{professionals.count} professionals added to the User database."
+puts "Done ! #{User.where(role: 'Profissional').count} professionals added to the User database."
 
 events = []
 titles = ["despedida de solteiro de ", "aniversario de ", "casamento de", "cocktail para", "housewarming de"]
@@ -59,7 +60,7 @@ titles = ["despedida de solteiro de ", "aniversario de ", "casamento de", "cockt
   event.save!
   events << event
 end
-puts "Done ! #{events.count} events added to the database."
+puts "Done ! #{Event.all.count} events added to the database."
 
 
 jobs = []
@@ -68,8 +69,9 @@ jobs = []
   job.price = %w(20 30 40 50 60 70 80 90 100).sample.to_i
   job.event = Event.all.sample
   job.professional = User.where(role: "Profissional").sample
-  job.save
+  job.rating = (1..5).to_a.sample
+  job.comment = Faker::Lorem.paragraph
+  job.save!
   jobs << job
 end
-puts "Done ! #{jobs.count} jobs added to the database."
-
+puts "Done ! #{Job.all.count} jobs added to the database."
