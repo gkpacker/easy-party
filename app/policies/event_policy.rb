@@ -14,7 +14,7 @@ class EventPolicy < ApplicationPolicy
   end
 
   def update?
-    @record.user == @user
+    @record.organizer == @user
   end
 
   def destroy?

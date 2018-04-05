@@ -7,6 +7,7 @@ class JobsController < ApplicationController
 
   def new
     @job = Job.new
+    authorize @job
     @events = current_user.events
     @user = User.find(params[:user_id])
   end
@@ -15,6 +16,7 @@ class JobsController < ApplicationController
     @job = Job.new(job_params)
     @job.event_id = params[:job][:event]
     @job.professional = User.find(params[:user_id])
+    authorize @job
     @job.save
     redirect_to event_path(@job.event)
   end
@@ -32,6 +34,7 @@ class JobsController < ApplicationController
 
   def destroy
     event = @job.event
+    authorize @job
     @job.destroy
     redirect_to event_path(event)
   end

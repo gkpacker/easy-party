@@ -31,11 +31,13 @@ class EventsController < ApplicationController
 
   def edit
     @event = current_user.events.find(params[:id])
+    authorize @event
   end
 
   def update
     @event = Event.new
     @event.organizer = current_user
+    authorize @event
     if @event.update(event_params)
       redirect_to event_path(@event)
     else
