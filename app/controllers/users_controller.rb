@@ -13,7 +13,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @professional = User.find(params[:id])
+    if params[:id] != "sign_out"
+      @professional = User.find(params[:id])
+    else
+      redirect_to root_path
+    end
   end
 
   def new

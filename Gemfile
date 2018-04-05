@@ -19,6 +19,7 @@ gem 'webpacker'
 gem 'faker'
 gem 'devise'
 gem 'carrierwave', '~> 1.2'
+gem 'jquery-rails'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
