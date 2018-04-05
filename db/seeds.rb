@@ -74,15 +74,3 @@ jobs = []
   jobs << job
 end
 puts "Done ! #{Job.all.count} jobs added to the database."
-
-# ratings = []
-# 50.times do
-#   rating = Rating.new
-#   rating.notation = (1..5).to_a.sample
-#   rating.comment = Faker::Lorem.paragraph
-#   rating.professional = User.where(role: "Profissional").sample
-#   rating.organizer = User.where(role: "Organizador").sample
-#   rating.save!
-#   ratings << rating
-# end
-# puts "Done ! #{Rating.all.count} jobs added to the database."

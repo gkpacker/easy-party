@@ -20,7 +20,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   include PgSearch
-  multisearchable against: [ :city ]
+  pg_search_scope :search,
+    against: [ :city, :first_name, :last_name ],
+    associated_against: {
+      category: [ :name ]
+    },
+    using: {
+      tsearch: { prefix: true }
+    }
 
   def professional?
     role == "Profissional"

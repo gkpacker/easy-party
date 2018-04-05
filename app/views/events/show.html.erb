@@ -19,14 +19,16 @@
           <td><%= job.professional.category.name %></td>
           <td>R$ <%= job.price %> / hora</td>
           <td>
-            <% if job.accepted? %>
+           <% if job.accepted? %>
               <% if job.done? %>
-                done
+                <p><i class="fa fa-dot-circle-o" aria-hidden="true"></i>  Done</p>
               <% else %>
-                accepted
+                <p><i class="fa fa-check-square-o" aria-hidden="true"></i>  Accepted</p>
               <% end %>
+            <% elsif job.accepted == false %>
+                <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>  Declined</p>
             <% else %>
-              Acceptation pending
+              <p><i class="fa fa-clock-o" aria-hidden="true"></i>  Answer pending</p>
             <% end %>
           </td>
           <td><%= job.professional.first_name + " " + job.professional.last_name %></td>

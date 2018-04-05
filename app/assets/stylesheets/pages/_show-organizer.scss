@@ -1,0 +1,28 @@
+.organizer-profile-wrap {
+margin-top: 20px;
+}
+
+.organizer-events-wrap {
+  margin-top: 20px;
+}
+
+.head-organizer-events {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-new-event{
+  background-color: #EF457B;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+
+}
+
+.btn-new-event:hover {
+  background-color: #AA184D;
+  border: none;
+  color: white;
+}

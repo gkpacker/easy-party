@@ -1,33 +1,44 @@
 <div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="organizer-profile-wrap">
 
-  <h1>Meu dashboard</h1>
-  <%= link_to "Editar perfil", edit_user_registration_path %>
-  <%= cl_image_tag @organizer.photo, height: 300, width: 400, crop: :fill %>
-  <h2>Dados do meu perfil :</h2>
+      <%= cl_image_tag @organizer.photo, height: 300, width: 400, crop: :fill %>
+      <h3>Perfil :</h3>
 
-  <ol class="list-unstyled">
-    <li><strong>Nome: </strong><%= @organizer.first_name + " " + @organizer.last_name%></li>
-    <li><strong>Email: </strong><%= @organizer.email %></li>
-    <li><strong>Telefone: </strong><%= @organizer.phone_number %></li>
-  </ol>
+      <ol class="list-unstyled">
+        <li><strong>Nome: </strong><%= @organizer.first_name + " " + @organizer.last_name%></li>
+        <li><strong>Email: </strong><%= @organizer.email %></li>
+        <li><strong>Telefone: </strong><%= @organizer.phone_number %></li>
+      </ol>
+      <%= link_to "Editar perfil", edit_user_registration_path %>
+    </div>
+    </div>
 
+    <div class="col-md-6">
+      <div class="organizer-events-wrap">
+        <div class="head-organizer-events">
+        <h3>Meus eventos</h3>
+        <p><%= link_to "Novo evento", new_event_path, class: "navbar-easy-item navbar-easy-link btn-new-event" %></p>
+      </div>
 
-  <h2>Meus eventos</h2>
-
-<table class="table">
-  <thead>
-    <th>Evento</th>
-    <th>Lugar</th>
-    <th>Data</th>
-  </thead>
-  <tbody>
-    <% @organizer.events.each do |event| %>
-    <tr>
-      <td><%= link_to event.title, event_path(event) %></td>
-      <td><%= event.location %></td>
-      <td><%= event.date %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+    <table class="table">
+      <thead>
+        <th>Evento</th>
+        <th>Lugar</th>
+        <th>Data</th>
+      </thead>
+      <tbody>
+        <% @organizer.events.each do |event| %>
+        <tr>
+          <td><%= link_to event.title, event_path(event) %></td>
+          <td><%= event.location %></td>
+          <td><%= event.date %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+      </div>
+    </div>
+  </div>
 </div>
