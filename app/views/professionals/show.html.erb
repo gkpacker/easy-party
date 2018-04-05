@@ -39,10 +39,10 @@
               <% if job.done? %>
                 <p>done</p>
               <% else %>
-                <p>accepted</p>
+                <p><i class="fa fa-check-square-o" aria-hidden="true"></i>  Accepted</p>
               <% end %>
             <% elsif job.accepted == false %>
-                <p>declined</p>
+                <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>  Declined</p>
             <% else %>
               <p>Você quer aceitar esse job ?</p>
               <%= link_to  "Aceitar", "jobs/#{job.id}/accept", method: :patch, class: "btn btn-success" %>
