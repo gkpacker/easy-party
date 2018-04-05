@@ -17,6 +17,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  include PgSearch
+  multisearchable against: [ :city ]
+
   def professional?
     role == "Profissional"
   end

@@ -18,16 +18,16 @@
           <%= f.fields_for :pictures do |p| %>
 
             <div class="field">
-              <%= p.label :pictures %><br>
-              <%= p.file_field :pictures, :multiple => true, name: "pictures[picture][]" %>
+              <%= p.file_field :pictures, class: "dropzone", :multiple => true, hint: false, name: "pictures[picture][]" %>
               <%= p.input :picture_cache, as: :hidden %>
             </div>
           <% end %>
 
-          <%= f.text_area :description %>
+          <%= f.text_area :description, style: "width: 100%;" %>
         </div>
 
         <div class="form-actions">
           <%= f.button :submit %>
         </div>
       <% end %>
+
