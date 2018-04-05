@@ -1,15 +1,18 @@
 class ProfessionalsController < ApplicationController
   def show
     @professional = current_user
+    authorize @professional
   end
 
   def edit
-    @user = current_user
+    @professional = current_user
+    authorize @professional
   end
 
   def update
-    @user = current_user
-    if @user.update(user_params)
+    @professional = current_user
+    authorize @professional
+    if @professional.update(user_params)
       redirect_to root_path
     else
       render :edit

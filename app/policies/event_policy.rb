@@ -1,12 +1,12 @@
 class EventPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope
+      scope.where(organizer: @user)
     end
   end
 
   def show?
-    true
+    @record.organizer == @user
   end
 
   def create?
@@ -18,6 +18,6 @@ class EventPolicy < ApplicationPolicy
   end
 
   def destroy?
-    @record.user == @user
+    @record.organizer == @user
   end
 end

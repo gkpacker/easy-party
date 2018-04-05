@@ -14,7 +14,11 @@ class JobPolicy < ApplicationPolicy
   end
 
   def update?
-    @record.user == @user
+    @record.event.organizer == @user
+  end
+
+  def edit?
+    update?
   end
 
   def destroy?

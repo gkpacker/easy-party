@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
 
   def show
-    @event = current_user.events.find(params[:id])
+    @event = Event.find(params[:id])
     authorize @event
     @pictures = @event.pictures.all
   end
@@ -47,6 +47,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event = Event.find(params[:id])
+    authorize @event
     @event.destroy
     redirect_to organizers_path
   end
