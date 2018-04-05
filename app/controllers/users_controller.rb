@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @jobs = Job.where(professional_id: params[:id])
     if params[:id] != "sign_out"
       @professional = User.find(params[:id])
     else
