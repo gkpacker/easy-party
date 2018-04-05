@@ -4,14 +4,20 @@
       <div class="organizer-profile-wrap">
 
       <%= cl_image_tag @organizer.photo, height: 300, width: 400, crop: :fill %>
-      <h3>Perfil :</h3>
+      <div class="head-organizer-profile">
+        <h3>Perfil : <%= link_to edit_user_registration_path do %>
+          <i class="fa fa-pencil edit-icon" aria-hidden="true"></i>
+          <% end %>
+        </h3>
+
+       </div>
+
 
       <ol class="list-unstyled">
         <li><strong>Nome: </strong><%= @organizer.first_name + " " + @organizer.last_name%></li>
         <li><strong>Email: </strong><%= @organizer.email %></li>
         <li><strong>Telefone: </strong><%= @organizer.phone_number %></li>
       </ol>
-      <%= link_to "Editar perfil", edit_user_registration_path %>
     </div>
     </div>
 
@@ -37,7 +43,7 @@
         </tr>
         <% end %>
       </tbody>
-    </table>
+      </table>
       </div>
     </div>
   </div>
