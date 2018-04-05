@@ -1,9 +1,37 @@
 .organizer-profile-wrap {
 margin-top: 20px;
+background-color: #fcfcfc;
+width: 100%;
+max-width: 450px;
+padding: 30px;
+border-radius: 10px;
+box-shadow: 0px 6px 15px -10px rgba(0,0,0,0.6);
+text-align: center;
+}
+
+
+.edit-icon {
+  display: none;
+}
+
+
+.head-organizer-profile {
+  padding: 10px;
+  &:hover {
+    .edit-icon {
+      display: inline-block;
+    }
+  }
+}
+
+
+.head-organizer-profile i {
+  font-size: 20px;
 }
 
 .organizer-events-wrap {
   margin-top: 20px;
+
 }
 
 .head-organizer-events {
@@ -26,3 +54,9 @@ margin-top: 20px;
   border: none;
   color: white;
 }
+
+.profile-pic {
+  border-radius: 50%;
+  border: 3px solid #FF0073;
+}
+
