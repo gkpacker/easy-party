@@ -27,6 +27,7 @@ class JobsController < ApplicationController
   end
 
   def edit
+    @professional = Job.find(params[:id]).professional
     @user = current_user
     authorize @job
   end

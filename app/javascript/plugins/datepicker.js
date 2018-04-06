@@ -10,7 +10,7 @@ flatpickr(".datepicker", {
   dateFormat: "d/m/Y H:i",
   minDate: "today",
   "locale": Portuguese,
-  onChange: function() {
+  onReady: function() {
     this.close()
   }
 });
