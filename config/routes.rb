@@ -14,9 +14,9 @@ Rails.application.routes.draw do
 
   resource :organizers, only: [:show]
 
-  patch "jobs/:id/accept", to: "jobs#accept"
+  patch "jobs/:id/accept", to: "jobs#accept", as: "job_accept"
 
-  patch "jobs/:id/decline", to: "jobs#decline"
+  patch "jobs/:id/decline", to: "jobs#decline", as: "job_decline"
 
   # get "jobs/:id/edit_new_review", to: "jobs#"
   # patch "jobs/:id/new_review", to: "jobs#new_review", as: "new_review"

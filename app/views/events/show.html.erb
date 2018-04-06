@@ -15,7 +15,7 @@
     </thead>
     <tbody>
       <% @event.jobs.each do |job| %>
-        <tr>
+        <tr data-job-id="<%= job.id %>">
           <td><%= job.professional.category.name %></td>
           <td>R$ <%= job.price %> / hora</td>
           <td>
@@ -38,7 +38,7 @@
           </td>
           <td><%= job.professional.first_name + " " + job.professional.last_name %></td>
 
-          <td><%= link_to "Cancelar job", job_path(job), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to "Cancelar job", job_path(job), method: :delete, remote: true %></td>
           <td><%= link_to "Editar job", edit_job_path(job) %></td>
         </tr>
       <% end %>

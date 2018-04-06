@@ -8,14 +8,16 @@
     <h4><strong>Comentarios de outros organizadores de eventos:</strong></h4>
     <% if (@jobs != nil) && (@jobs != []) %>
       <% @jobs.each do |job| %>
-      <p>----------------------------------------------------------</p>
-        <p>Rating de <strong><%= job.event.organizer.first_name + " " + job.event.organizer.last_name %></strong>, quem trabalhou com <strong><%= @professional.first_name %></strong> para seu evento no <strong><%= job.event.date %></strong></p>
-        <p><strong>Nota : </strong><%= job.rating %></p>
-        <p><strong>Comentario : </strong><%= job.comment %></p>
+        <% unless job.event.nil? %>
+
+        <p>----------------------------------------------------------</p>
+          <p>Rating de <strong><%= job.event.organizer.first_name + " " + job.event.organizer.last_name %></strong>, quem trabalhou com <strong><%= @professional.first_name %></strong> para seu evento no <strong><%= job.event.date %></strong></p>
+          <p><strong>Nota : </strong><%= job.rating %></p>
+          <p><strong>Comentario : </strong><%= job.comment %></p>
+        <% end %>
       <% end %>
-    <% else %>
-      <p><em><%= @professional.first_name %> ainda não tem sido avaliado!</em></p>
     <% end %>
+        <p><em><%= @professional.first_name %> ainda não tem sido avaliado!</em></p>
   <% end %>
 
   <p><%= link_to "Back to home", root_path %></p>

@@ -24,4 +24,12 @@ class JobPolicy < ApplicationPolicy
   def destroy?
     @record.event.organizer == @user
   end
+
+  def accept?
+    @record.professional == @user
+  end
+
+  def decline?
+    @record.professional == @user
+  end
 end
