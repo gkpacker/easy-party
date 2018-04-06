@@ -19,17 +19,23 @@
         <% if @search == "" %>
           <h4><%= @results.length %> Profissionais mais recentes</h4>
           <% @results.each do |professional| %>
-            <div class="col-xs-12 col-sm-12">
-              <%= render "card", professional: professional %>
-            </div>
+            <% unless professional == current_user %>
+
+              <div class="col-xs-12 col-sm-12">
+                <%= render "card", professional: professional %>
+              </div>
+            <% end %>
           <% end %>
 
         <% else %>
           <h4><%= @results.length %> resultados para: <i>"<%= @search %>"</i> </h4>
           <% @results.each do |professional| %>
-            <div class="col-xs-12 col-sm-12">
-              <%= render "card", professional: professional %>
-            </div>
+            <% unless professional == current_user %>
+
+              <div class="col-xs-12 col-sm-12">
+                <%= render "card", professional: professional %>
+              </div>
+            <% end %>
           <% end %>
         <% end %>
 
