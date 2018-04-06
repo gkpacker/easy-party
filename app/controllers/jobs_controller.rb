@@ -42,7 +42,6 @@ class JobsController < ApplicationController
     event = @job.event
     authorize @job
     @job.destroy
-    # redirect_to event_path(event)
   end
 
   def accept

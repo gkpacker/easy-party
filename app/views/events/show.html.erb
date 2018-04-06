@@ -1,15 +1,19 @@
 <div class="container">
-  <h4><%= @event.title.capitalize %><%= link_to edit_event_path(@event) do %>
-    <i class="fa fa-pencil" aria-hidden="true"></i>
-    <% end %> <%= link_to event_path(@event), method: :delete, data: { confirm: 'Are you sure?' } do %>
+  <h4>
+    <%= @event.title.capitalize %>
+    <a href= "#">
+    <i class="fa fa-pencil" aria-hidden="true" data-toggle="modal" data-target=".bs-example-modal-lg"></i>
+    </a>
+    <%= link_to event_path(@event), method: :delete, data: { confirm: 'Are you sure?' } do %>
     <i class="fa fa-trash" aria-hidden="true"></i>
-    <% end %></h4>
+    <% end %>
+  </h4>
 
   <h4><i class="fa fa-calendar-check-o" aria-hidden="true"></i> <%= @event.date %></h4>
   <%  @pictures.each do |picture| %>
     <%= cl_image_tag picture.picture.url, height: 100, width: 150, crop: :fill %>
   <% end %>
-
+  <%= link_to "Back", organizers_path %>
   <table class="table">
     <thead class="head-show-event" >
       <th>Job</th>
@@ -57,8 +61,12 @@
     </tbody>
   </table>
 
-  <p>
-  </p>
-  <p>
-  </p>
+  <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <%= render template: "events/edit" %>
+      </div>
+    </div>
+  </div>
+
 </div>
