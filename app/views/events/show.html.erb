@@ -37,6 +37,8 @@
                 <% end %>
               <% else %>
                 <p><i class="fa fa-check-square-o" aria-hidden="true"></i>  Accepted</p>
+                <%= link_to "Job concluido ?", job_done_path(job), method: :patch, class: "btn btn-success" %>
+                </div>
               <% end %>
             <% elsif job.accepted == false %>
                 <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>  Declined</p>

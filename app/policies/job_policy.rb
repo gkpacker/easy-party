@@ -32,4 +32,8 @@ class JobPolicy < ApplicationPolicy
   def decline?
     @record.professional == @user
   end
+
+  def done?
+    @record.event.organizer == @user
+  end
 end

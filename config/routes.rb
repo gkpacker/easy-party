@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   patch "jobs/:id/decline", to: "jobs#decline", as: "job_decline"
 
+  patch "jobs/:id/done", to: "jobs#done", as: "job_done"
+
   # get "jobs/:id/edit_new_review", to: "jobs#"
   # patch "jobs/:id/new_review", to: "jobs#new_review", as: "new_review"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
