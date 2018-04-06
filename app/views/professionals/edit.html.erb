@@ -8,7 +8,7 @@
 
         <div class="form-inputs">
           <%= f.association :category, required: true %>
-          <%= f.input :availability, collection: [["Seg a Sex", 0], ["Finais de semana", 1]], as: :radio_buttons %>
+          <%= f.input :availability, collection: [["Segunda", "Segunda"], ["Terça", "Terça"], ["Quarta", "Quarta"], ["Quinta", "Quinta"], ["Sexta", "Sexta"], ["Sábado", "Sábado"], ["Domingo", "Domingo"]], as: :check_boxes %>
           <%= f.input :price_per_hour, required: true %>
           <%= f.input :city, required: true %>
         </div>
