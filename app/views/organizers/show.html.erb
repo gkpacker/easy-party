@@ -4,27 +4,28 @@
       <div class="organizer-profile-wrap">
 
       <%= cl_image_tag @organizer.photo, width: 200, height: 200, crop: :fill, class: "profile-pic"%>
-      <div class="head-organizer-profile">
-        <h4>Perfil : <%= link_to edit_user_registration_path do %>
-          <i class="fa fa-pencil edit-icon" aria-hidden="true"></i>
-          <% end %>
-        </h4>
 
-       </div>
 
 
       <ol class="list-unstyled">
-        <li><strong>Nome: </strong><%= @organizer.first_name + " " + @organizer.last_name%></li>
-        <li><strong>Email: </strong><%= @organizer.email %></li>
-        <li><strong>Telefone: </strong><%= @organizer.phone_number %></li>
+        <li><strong><%= @organizer.first_name + " " + @organizer.last_name%></strong></li>
+        <li><i class="fa fa-envelope" aria-hidden="true"></i>  <%= @organizer.email %></li>
+        <li><i class="fa fa-phone" aria-hidden="true"></i>
+<%= @organizer.phone_number %></li>
       </ol>
+
+        <%= link_to edit_user_registration_path do %>
+          <i class="fa fa-pencil edit-icon" aria-hidden="true"></i>
+          <% end %>
+
+
     </div>
     </div>
 
     <div class="col-md-6">
       <div class="organizer-events-wrap">
         <div class="head-organizer-events">
-        <h3>Meus eventos</h3>
+        <h4>Meus eventos</h4>
 
         <button type="button" class="navbar-easy-item navbar-easy-link btn-new-event" data-toggle="modal" data-target=".bs-example-modal-lg">Novo evento</button>
       </div>
@@ -41,6 +42,14 @@
           <td><%= link_to event.title, event_path(event) %></td>
           <td><%= event.location %></td>
           <td><%= event.date %></td>
+          <td><%= link_to edit_event_path(event) do %>
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+            <% end %>
+          </td>
+          <td><%= link_to event_path(event), method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <i class="fa fa-trash" aria-hidden="true"></i>
+            <% end %>
+          </td>
         </tr>
         <% end %>
       </tbody>
