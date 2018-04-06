@@ -1,0 +1,8 @@
+function declineStatus() {
+  const item = document.querySelector("[data-job-buttons='<%= @job.id %>']")
+  item.innerHTML = ""
+  item.insertAdjacentHTML('beforeend', '<p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>  Declined</p>');
+};
+
+declineStatus()
+

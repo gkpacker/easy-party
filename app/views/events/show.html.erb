@@ -19,7 +19,7 @@
     </thead>
     <tbody>
       <% @event.jobs.each do |job| %>
-        <tr>
+        <tr data-job-id="<%= job.id %>">
           <td><%= job.professional.category.name %></td>
           <td>R$ <%= job.price %> / hora</td>
           <td>
@@ -42,13 +42,12 @@
           </td>
           <td><%= job.professional.first_name + " " + job.professional.last_name %></td>
 
-
           <td><%= link_to edit_job_path(job) do %>
             <i class="fa fa-pencil" aria-hidden="true"></i>
 
             <% end %>
           </td>
-          <td><%= link_to job_path(job), method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <td><%= link_to job_path(job), method: :delete, remote: true, data: { confirm: 'Are you sure?' } do %>
             <i class="fa fa-trash" aria-hidden="true"></i>
 
             <% end %>

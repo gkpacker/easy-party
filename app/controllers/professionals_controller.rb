@@ -10,16 +10,18 @@ class ProfessionalsController < ApplicationController
   end
 
   def update
-    days = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"]
-    params_avaiable = params[:user]["availability"]
-    available = ""
-    days.each do |day|
-      available += " #{day}" if params_avaiable.to_s.match(/"#{day}"/).present?
-    end
+    raise
     @professional = current_user
-    @professional.availability = available
-
     authorize @professional
+    days = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"]
+    if params[:user].present?
+      params_avaiable = params[:user]["availability"]
+      available = ""
+      days.each do |day|
+        available += " #{day}" if params_avaiable.to_s.match(/"#{day}"/).present?
+      end
+      @professional.availability = available
+    end
     if @professional.update(user_params)
       redirect_to professionals_path
     else

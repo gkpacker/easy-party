@@ -34,7 +34,7 @@ class EventsController < ApplicationController
   end
 
   def update
-    @event = Event.new
+    @event = current_user.events.find(params[:id])
     @event.organizer = current_user
     authorize @event
     if @event.update(event_params)
