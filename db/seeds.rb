@@ -20,15 +20,14 @@ puts "Done ! #{Category.all.count} categories added to the database."
 
 # --------- Seeding Users DB --------- #
 # 1) ------ Organizers ------- #
-organizers = []
 
-organizer_first_names = %w(mathieu roberto marcelo diego)
-organizer_last_names = ["le roux", "barros", "de polli", "van dyk"]
-organizer_usernames = %w(matleroux robertobarros mdepolli diegolearnstocode)
+# organizer_first_names = %w(mathieu roberto marcelo diego)
+# organizer_last_names = ["le roux", "barros", "de polli", "van dyk"]
+# organizer_usernames = %w(matleroux robertobarros mdepolli diegolearnstocode)
 
-professional_first_names = %w(andré bruno césar daniel daniel danielle fabricio marcos miguel oscar rodrigo thiago val)
-professional_last_names = %w(miotto parga fuster carvalho topper alvino zanette scorzoni aguirre ortiz arroyo scatigno prando)
-professional_usernames = %w(andremiotto brunoparga cesarfuster danielbpc2 dantopper danialvino fdzanette mscorzoni migueldaguirre oscarlaf03 rodjra tgiliberti vcprando)
+# professional_first_names = %w(andré bruno césar daniel daniel danielle fabricio marcos miguel oscar rodrigo thiago val)
+# professional_last_names = %w(miotto parga fuster carvalho topper alvino zanette scorzoni aguirre ortiz arroyo scatigno prando)
+# professional_usernames = %w(andremiotto brunoparga cesarfuster danielbpc2 dantopper danialvino fdzanette mscorzoni migueldaguirre oscarlaf03 rodjra tgiliberti vcprando)
 
 5.times do
   organizer = User.new
@@ -49,7 +48,7 @@ end
 puts "Done ! #{User.where(role: 'Organizador').count} organizers added to the User database."
 
 # 2) ------ Professionals ------- #
-15.times do
+50.times do
   professional = User.new
 
   user = JSON.parse(open('https://randomuser.me/api/').read)['results'].first
@@ -90,11 +89,22 @@ puts "Done ! #{Event.all.count} events added to the database."
 
 
 jobs = []
-15.times do
+100.times do
   job = Job.new
   job.event = Event.all.sample
   job.professional = User.where(role: "Profissional").sample
   job.price = job.professional.price_per_hour
+  job.accepted = [true, false].sample
+  if job.accepted
+    job.done = [true, false].sample
+    if job.done
+      random_rating = (1..5).to_a.sample
+      job.rating = [nil, random_rating].sample
+      if job.rating
+        job.comment = Faker::Lorem.paragraph
+      end
+    end
+  end
   job.save!
 end
 puts "Done ! #{Job.all.count} jobs added to the database."

@@ -55,7 +55,6 @@
                     <% elsif job.accepted == false %>
                         <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>  Declined</p>
                     <% else %>
-                      <p>Você quer aceitar esse job ?</p>
                       <%= link_to  "Aceitar", job_accept_path(job), method: :patch, class: "btn btn-success", remote: true %>
                       <%= link_to "Recusar", job_decline_path(job), method: :patch, class: "btn btn-danger", remote: true %>
                     <% end %>
