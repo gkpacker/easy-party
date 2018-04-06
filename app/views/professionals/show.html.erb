@@ -1,28 +1,30 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-4">
       <div class="professional-profile-wrap">
-        <%= link_to "Edit profile", edit_user_registration_path %>
-        <%= cl_image_tag @professional.photo, width: 350, crop: :fill %>
+        <%= link_to edit_user_registration_path do %>
+          <i class="fa fa-pencil edit-icon" aria-hidden="true"></i>
+          <% end %>
+        <%= cl_image_tag @professional.photo, width: 300, crop: :fill %>
+
 
         <ol class="list-unstyled">
-          <li><strong>Name: </strong><%= @professional.first_name + " " + @professional.last_name%></li>
-          <li><strong>Email: </strong><%= @professional.email %></li>
-          <li><strong>Phone Number: </strong><%= @professional.phone_number %></li>
+          <li><strong>Nome:</strong> </br><%= @professional.first_name + " " + @professional.last_name%></li>
+          <li><strong>Email:</strong> </br><%= @professional.email %></li>
+          <li><strong>Telefone:</strong> </br><%= @professional.phone_number %></li>
 
-          <li>
-            <strong>Availability: </strong>
+          <li><strong>Disponibilidade:</strong> </br>
             <%= @professional.availability %>
           </li>
 
-          <li><strong>Skill: </strong><%= @professional.category.name %></li>
-          <li><strong>Price / hour: </strong><%= @professional.price_per_hour %></li>
-          <li><strong>Geographical area: </strong><%= @professional.city %></li>
+          <li><strong>Habilidades:</strong> </br><%= @professional.category.name %></li>
+          <li><strong>Hora:</strong> </br><%= @professional.price_per_hour %></li>
+          <li><strong>Localização:</strong></br><%= @professional.city %></li>
         </ol>
       </div>
     </div>
 
-  <div class="col-md-7">
+  <div class="col-md-8">
 
       <h4>Próximos jobs</h4>
 
