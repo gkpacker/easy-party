@@ -33,7 +33,7 @@
                 <% if job.rating? %>
                   <p>Comentario deixado</p>
                 <% else %>
-                  <%= link_to "Review #{job.professional.first_name}", edit_job_path, class: "btn btn-primary" %>
+                  <%= link_to "Review #{job.professional.first_name}", edit_job_path(job), class: "btn btn-primary" %>
                 <% end %>
               <% else %>
                 <p><i class="fa fa-check-square-o" aria-hidden="true"></i>  Accepted</p>
