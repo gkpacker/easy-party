@@ -6,7 +6,7 @@
     <h4><strong>Tarifa: </strong> R$ <%= @professional.price_per_hour %> por hora</h4>
     <h4><strong>Area de atuação: </strong><%= @professional.city %></h4>
     <h4><strong>Comentarios de outros organizadores de eventos:</strong></h4>
-    <% if @jobs != [] %>
+    <% unless @jobs.nil? %>
       <% @jobs.each do |job| %>
       <p>----------------------------------------------------------</p>
         <p>Rating de <strong><%= job.event.organizer.first_name + " " + job.event.organizer.last_name %></strong>, quem trabalhou com <strong><%= @professional.first_name %></strong> para seu evento no <strong><%= job.event.date %></strong></p>

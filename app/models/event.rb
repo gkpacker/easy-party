@@ -7,4 +7,8 @@ class Event < ApplicationRecord
   && attributes['filename_cache'].blank?}
 
   validates :date, :location, :title, presence: true
+
+  def to_param
+    "#{id}-#{title.parameterize}"
+  end
 end
