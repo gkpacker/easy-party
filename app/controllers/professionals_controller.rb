@@ -13,9 +13,10 @@ class ProfessionalsController < ApplicationController
     raise
     @professional = current_user
     authorize @professional
-    days = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"]
-    if params[:user].present?
+    if params[:user]["availability"].present?
+      days = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"]
       params_avaiable = params[:user]["availability"]
+      @professional.availability = ""
       available = ""
       days.each do |day|
         available += " #{day}" if params_avaiable.to_s.match(/"#{day}"/).present?

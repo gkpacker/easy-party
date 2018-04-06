@@ -3,8 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   mount_uploader :photo, PhotoUploader
 
-  has_many :events, foreign_key: "organizer_id"
-  has_many :jobs, foreign_key: "professional_id"
+  has_many :events, foreign_key: "organizer_id", dependent: :destroy
+  has_many :jobs, foreign_key: "professional_id", dependent: :destroy
   has_many :ratings, foreign_key: "professional_id"
   has_many :ratings, foreign_key: "organizer_id"
   belongs_to :category, optional: true

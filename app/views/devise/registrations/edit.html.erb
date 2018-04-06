@@ -15,7 +15,7 @@
           <%= f.input :photo_cache, as: :hidden %>
           <% if resource.role == "Profissional" %>
             <%= f.association :category, required: true %>
-            <%= f.input :availability, collection: [["Segunda"], ["Terça"], ["Quarta"], ["Quinta"], ["Sexta"], ["Sábado"], ["Domingo"]], as: :checkboxes %>
+            <%= f.input :availability, collection: [["Segunda", "Segunda"], ["Terça", "Terça"], ["Quarta", "Quarta"], ["Quinta", "Quinta"], ["Sexta", "Sexta"], ["Sábado", "Sábado"], ["Domingo", "Domingo"]], as: :check_boxes %>
             <%= f.input :price_per_hour, required: true %>
             <%= f.input :city, required: true %>
           <% end %>
