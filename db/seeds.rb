@@ -48,7 +48,7 @@ end
 puts "Done ! #{User.where(role: 'Organizador').count} organizers added to the User database."
 
 # 2) ------ Professionals ------- #
-15.times do
+50.times do
   professional = User.new
 
   user = JSON.parse(open('https://randomuser.me/api/').read)['results'].first
@@ -89,7 +89,7 @@ puts "Done ! #{Event.all.count} events added to the database."
 
 
 jobs = []
-15.times do
+100.times do
   job = Job.new
   job.event = Event.all.sample
   job.professional = User.where(role: "Profissional").sample

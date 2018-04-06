@@ -6,6 +6,8 @@ class JobsController < ApplicationController
   end
 
   def new
+    @events = current_user.events
+    @event = Event.new
     @job = Job.new
     authorize @job
     @events = current_user.events

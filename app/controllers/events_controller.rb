@@ -22,7 +22,7 @@ class EventsController < ApplicationController
           @pictures = @event.pictures.create!(:picture => a)
         end
       end
-      redirect_to event_path(@event)
+      redirect_to stored_location_for(:user) || super
     else
       redirect_to organizers_path
     end
