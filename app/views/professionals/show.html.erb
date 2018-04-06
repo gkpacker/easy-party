@@ -9,17 +9,17 @@
 
 
         <ol class="list-unstyled">
-          <li><strong>Nome:</strong> </br><%= @professional.first_name + " " + @professional.last_name%></li>
-          <li><strong>Email:</strong> </br><%= @professional.email %></li>
-          <li><strong>Telefone:</strong> </br><%= @professional.phone_number %></li>
+          <li><strong>Nome: </strong><%= @professional.first_name + " " + @professional.last_name%></li>
+          <li><strong>Email: </strong><%= @professional.email %></li>
+          <li><strong>Telefone: </strong><%= @professional.phone_number %></li>
 
-          <li><strong>Disponibilidade:</strong> </br>
+          <li><strong>Disponibilidade: </strong>
             <%= @professional.availability %>
           </li>
 
-          <li><strong>Habilidades:</strong> </br><%= @professional.category.name %></li>
-          <li><strong>Hora:</strong> </br><%= @professional.price_per_hour %></li>
-          <li><strong>Localização:</strong></br><%= @professional.city %></li>
+          <li><strong>Habilidades: </strong><%= @professional.category.name %></li>
+          <li><strong>Hora: </strong><%= @professional.price_per_hour %></li>
+          <li><strong>Localização: </strong><%= @professional.city %></li>
         </ol>
       </div>
     </div>

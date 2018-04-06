@@ -1,0 +1,39 @@
+footer {
+  width: 100%;
+  color: white;
+  background-color: #565757;
+  margin-top: 60px;
+  padding: 8px;
+}
+
+
+.rights-footer {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 12px;
+
+}
+
+
+.footer-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.social-list {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  text-decoration: none;
+  width: 150px;
+
+
+}
+
+
+.social-list li {
+  font-size: 30px;
+
+}
