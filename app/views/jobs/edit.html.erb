@@ -1,5 +1,22 @@
 <% if @job.done? %>
   <%= render "new_review_form" %>
 <% else %>
-  <%= render "job_form" %>
+  <div class="container">
+    <br>
+    <div class="text-center">
+      <h3>Editando proposta para <%= @job.professional.full_name %></h3>
+      <br>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <%= simple_form_for [@job] do |f| %>
+          <%= f.input :price, label: "Preço por hora", required: false %>
+          <%= f.association :event, required: false, label: "Deseja alterar o evento?", collection: @events %>
+          <div class="button text-center">
+            <%= f.button :submit, value: "Enviar proposta", class: "  navbar-easy-item navbar-easy-link btn-new-event" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 <% end %>
