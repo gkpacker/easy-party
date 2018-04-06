@@ -31,7 +31,6 @@
               <% if job.done? %>
                 <p><i class="fa fa-dot-circle-o" aria-hidden="true"></i>  Done</p>
                 <% if job.rating? %>
-                  <p>Comentario deixado</p>
                 <% else %>
                   <%= link_to "Review #{job.professional.first_name}", edit_job_path(job), class: "btn btn-primary" %>
                 <% end %>

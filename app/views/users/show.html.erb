@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row row-professional-show">
-    <div class="col-xs-6">
+    <div class="col-xs-5">
       <% unless @professional.category.nil? %>
       <%= cl_image_tag @professional.photo, width: 450 %>
     </div>
 
-    <div class="col-xs-6">
+    <div class="col-xs-7">
       <div class="info-professional-wrap">
         <h4>
           <%= @professional.first_name + " " + @professional.last_name %>
@@ -13,17 +13,17 @@
         <p>
           <%= @professional.category.name %>
         </p>
-        <h4>
-          <strong>Disponibilidade: </strong>
+        <p>
+          Disponibilidade:
           <%= @professional.availability %>
-        </h4>
-        <h4>
-          <strong>Tarifa: </strong>
-          R$ <%= @professional.price_per_hour %> por hora
-        </h4>
-        <h4><strong>Area de atuação: </strong>
+        </p>
+        <p>
+          Tarifa:
+          R$ <%= @professional.price_per_hour %>/H
+        </p>
+        <p>Area de atuação:
           <%= @professional.city %>
-        </h4>
+        </p>
         <% if user_signed_in? == false || current_user.role == "Organizador"%><% end %>
         <p><%= link_to "Enviar uma proposta de job", new_user_job_path(@professional), class: "btn-easy btn-proposta" %></p>
       </div>
@@ -34,7 +34,8 @@
 
 
   <div class="col-xs-12">
-    <h4><strong>Comentarios de outros organizadores de eventos:</strong></h4>
+    <div class="avaliacao-wrap">
+    <h5><strong>Avaliações:</strong></h5>
     <% if (@jobs == nil) || (@jobs == []) %>
       <p><em><%= @professional.first_name %> ainda não tem sido avaliado!</em></p>
     <% else %>
@@ -42,16 +43,17 @@
         <% if job.done %>
           <p>----------------------------------------------------------</p>
           <% if job.rating %>
-            <p>Rating de <strong><%= job.event.organizer.first_name + " " + job.event.organizer.last_name %></strong>, quem trabalhou com <strong><%= @professional.first_name %></strong> para seu evento no <strong><%= job.event.date %></strong></p>
-            <p><strong>Nota : </strong><%= job.rating %></p>
-            <p><strong>Comentario : </strong><%= job.comment %></p>
+            <p>Por <strong><%= job.event.organizer.first_name + " " + job.event.organizer.last_name %></strong> - <%= job.event.date %></strong></p>
+            <p>Nota : <%= job.rating %></p>
+            <p>"<%= job.comment %></p>
           <% else %>
-            <p><strong><%= @professional.first_name %></strong> trabalhou no <strong><%= job.event.date %></strong> no evento do <strong><%= job.event.organizer.first_name + " " + job.event.organizer.last_name %></strong>, quem não deixou avaliação ainda.</p>
+            <p><%= @professional.first_name %>trabalhou no <strong><%= job.event.date %></strong> no evento do <strong><%= job.event.organizer.first_name + " " + job.event.organizer.last_name %></strong>, quem não deixou avaliação ainda.</p>
           <% end %>
         <% end %>
       <% end %>
     <% end %>
   <% end %>
+</div>
 </div>
 <div class="col-xs-12">
 
