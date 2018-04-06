@@ -1,47 +1,33 @@
 <div class="container">
-
   <div class="row">
-
-
     <div class="col-xs-3 col-sm-3">
-
-    <div class="search-filter">
-      <%= link_to "Nome", users_path(request.params.merge(order_query: "first_name")), class: "btn btn-sm btn-warning" %>
-      <%= link_to "Cidade", users_path(request.params.merge(order_query: "city")), class: "btn btn-sm btn-warning" %>
-
+      <div class="search-filter">
+        <%= link_to "Nome", users_path(request.params.merge(order_query: "first_name")), class: "btn btn-sm btn-warning" %>
+        <%= link_to "Cidade", users_path(request.params.merge(order_query: "city")), class: "btn btn-sm btn-warning" %>
+      </div>
     </div>
-
-
-    </div>
-
 
     <div class="col-xs-9 col-sm-9">
-        <% if @search == "" %>
-          <h4><%= @results.length %> Profissionais mais recentes</h4>
-          <% @results.each do |professional| %>
-            <% unless professional == current_user %>
-
-              <div class="col-xs-12 col-sm-12">
-                <%= render "card", professional: professional %>
-              </div>
-            <% end %>
-          <% end %>
-
-        <% else %>
-          <h4><%= @results.length %> resultados para: <i>"<%= @search %>"</i> </h4>
-          <% @results.each do |professional| %>
-            <% unless professional == current_user %>
-
-              <div class="col-xs-12 col-sm-12">
-                <%= render "card", professional: professional %>
-              </div>
-            <% end %>
+      <% if @search == "" %>
+        <h4><%= @results.length %> Profissionais mais recentes</h4>
+        <% @results.each do |professional| %>
+          <% if professional.role == "Profissional" && professional != current_user%>
+            <div class="col-xs-12 col-sm-12">
+              <%= render "card", professional: professional %>
+            </div>
           <% end %>
         <% end %>
 
-
+      <% else %>
+        <h4><%= @results.length %> resultados para: <i>"<%= @search %>"</i> </h4>
+        <% @results.each do |professional| %>
+          <% if professional.role == "Profissional" && professional != current_user%>
+            <div class="col-xs-12 col-sm-12">
+              <%= render "card", professional: professional %>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
-
-
-
 </div>

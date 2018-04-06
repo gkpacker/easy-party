@@ -1,3 +1,13 @@
+.edit-icon {
+  display: none;
+  position: absolute;
+  top: 25px;
+  right: 30px;
+
+}
+
+
+
 .organizer-profile-wrap {
 margin-top: 20px;
 background-color: #fcfcfc;
@@ -7,22 +17,17 @@ padding: 30px;
 border-radius: 10px;
 box-shadow: 0px 6px 15px -10px rgba(0,0,0,0.6);
 text-align: center;
-}
+position: relative;
 
-
-.edit-icon {
-  display: none;
-}
-
-
-.head-organizer-profile {
-  padding: 10px;
-  &:hover {
-    .edit-icon {
-      display: inline-block;
-    }
+ &:hover {
+  .edit-icon {
+    display: inline-block;
   }
+ }
 }
+
+
+
 
 
 .head-organizer-profile i {
@@ -62,5 +67,10 @@ text-align: center;
 
 .modal-content {
   padding: 30px;
+  border-radius: 10px;
+}
+
+.list-unstyled {
+  margin-top: 10px;
 }
 

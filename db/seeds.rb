@@ -77,7 +77,7 @@ puts "Done ! #{User.where(role: 'Profissional').count} professionals added to th
 
 events = []
 titles = ["despedida de solteiro de ", "aniversario de ", "casamento de", "cocktail para", "housewarming de"]
-5.times do
+10.times do
   event = Event.new
   event.organizer = User.where(role: "Organizador").sample
   event.title = "#{titles.sample.capitalize} #{Faker::Name.first_name.capitalize}"
@@ -85,7 +85,6 @@ titles = ["despedida de solteiro de ", "aniversario de ", "casamento de", "cockt
   event.location = %w(Pinheiros Morumbi Itaim Campinas Sorocaba Santos Jardins).sample
   event.description = Faker::Lorem.paragraph
   event.save!
-  events << event
 end
 puts "Done ! #{Event.all.count} events added to the database."
 
@@ -97,6 +96,5 @@ jobs = []
   job.professional = User.where(role: "Profissional").sample
   job.price = job.professional.price_per_hour
   job.save!
-  jobs << job
 end
 puts "Done ! #{Job.all.count} jobs added to the database."

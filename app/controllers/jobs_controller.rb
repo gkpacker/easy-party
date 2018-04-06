@@ -17,8 +17,11 @@ class JobsController < ApplicationController
     @job = Job.new(job_params)
     @job.professional = User.find(params[:user_id])
     authorize @job
-    @job.save
-    redirect_to event_path(@job.event)
+    if @job.save
+      redirect_to event_path(@job.event)
+    else
+      render :new
+    end
   end
 
   def edit
@@ -39,19 +42,19 @@ class JobsController < ApplicationController
     event = @job.event
     authorize @job
     @job.destroy
-    redirect_to event_path(event)
+    # redirect_to event_path(event)
   end
 
   def accept
+    authorize @job
     @job.accepted = true
     @job.save!
-    redirect_to professionals_path
   end
 
   def decline
+    authorize @job
     @job.accepted = false
     @job.save!
-    redirect_to professionals_path
   end
 
   private

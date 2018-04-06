@@ -1,13 +1,17 @@
 <div class="container">
-  <h2>Meu dashboard</h2>
-  <h3>Evento: <%= @event.title.capitalize %></h3>
-  <h3>Data: <%= @event.date %></h3>
+  <h4><%= @event.title.capitalize %><%= link_to edit_event_path(@event) do %>
+    <i class="fa fa-pencil" aria-hidden="true"></i>
+    <% end %> <%= link_to event_path(@event), method: :delete, data: { confirm: 'Are you sure?' } do %>
+    <i class="fa fa-trash" aria-hidden="true"></i>
+    <% end %></h4>
+
+  <h4><i class="fa fa-calendar-check-o" aria-hidden="true"></i> <%= @event.date %></h4>
   <%  @pictures.each do |picture| %>
     <%= cl_image_tag picture.picture.url, height: 100, width: 150, crop: :fill %>
   <% end %>
 
   <table class="table">
-    <thead>
+    <thead class="head-show-event" >
       <th>Job</th>
       <th>Price</th>
       <th>Status:</th>
@@ -15,7 +19,7 @@
     </thead>
     <tbody>
       <% @event.jobs.each do |job| %>
-        <tr>
+        <tr data-job-id="<%= job.id %>">
           <td><%= job.professional.category.name %></td>
           <td>R$ <%= job.price %> / hora</td>
           <td>
@@ -38,13 +42,23 @@
           </td>
           <td><%= job.professional.first_name + " " + job.professional.last_name %></td>
 
-          <td><%= link_to "Cancelar job", job_path(job), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <td><%= link_to "Editar job", edit_job_path(job) %></td>
+          <td><%= link_to edit_job_path(job) do %>
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+
+            <% end %>
+          </td>
+          <td><%= link_to job_path(job), method: :delete, remote: true, data: { confirm: 'Are you sure?' } do %>
+            <i class="fa fa-trash" aria-hidden="true"></i>
+
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 
-  <p><%= link_to "Editar evento", edit_event_path(@event) %></p>
-  <p><%= link_to "Cancelar evento", event_path(@event), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  <p>
+  </p>
+  <p>
+  </p>
 </div>
