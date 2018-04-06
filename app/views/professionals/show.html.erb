@@ -1,67 +1,73 @@
 <div class="container">
-  <h1>Professional dashboard</h1>
-  <%= link_to "Edit profile", edit_user_registration_path %>
-  <%= cl_image_tag @professional.photo, height: 300, width: 400, crop: :fill %>
-  <h2>My personnal information:</h2>
+  <div class="row">
+    <div class="col-md-5">
+      <div class="professional-profile-wrap">
+        <%= link_to "Edit profile", edit_user_registration_path %>
+        <%= cl_image_tag @professional.photo, width: 350, crop: :fill %>
 
-  <ol class="list-unstyled">
-    <li><strong>Name: </strong><%= @professional.first_name + " " + @professional.last_name%></li>
-    <li><strong>Email: </strong><%= @professional.email %></li>
-    <li><strong>Phone Number: </strong><%= @professional.phone_number %></li>
+        <ol class="list-unstyled">
+          <li><strong>Name: </strong><%= @professional.first_name + " " + @professional.last_name%></li>
+          <li><strong>Email: </strong><%= @professional.email %></li>
+          <li><strong>Phone Number: </strong><%= @professional.phone_number %></li>
 
-    <li>
-      <strong>Availability: </strong>
-      <%= @professional.availability %>
-    </li>
+          <li>
+            <strong>Availability: </strong>
+            <%= @professional.availability %>
+          </li>
 
-    <li><strong>Skill: </strong><%= @professional.category.name %></li>
-    <li><strong>Price / hour: </strong><%= @professional.price_per_hour %></li>
-    <li><strong>Geographical area: </strong><%= @professional.city %></li>
-  </ol>
+          <li><strong>Skill: </strong><%= @professional.category.name %></li>
+          <li><strong>Price / hour: </strong><%= @professional.price_per_hour %></li>
+          <li><strong>Geographical area: </strong><%= @professional.city %></li>
+        </ol>
+      </div>
+    </div>
 
+  <div class="col-md-7">
 
-  <h2>My next jobs</h2>
+      <h4>Próximos jobs</h4>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Event</th>
-        <th>Location</th>
-        <th>Date</th>
-        <th>Price</th>
-        <th>Status:</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @professional.jobs.each do |job| %>
-        <div>
+      <table class="table">
+        <thead>
           <tr>
-            <td><%= job.event.title %></td>
-            <td><%= job.event.location %></td>
-            <td><%= job.event.date %></td>
-            <td><%= job.price %></td>
-            <td>
-              <div data-job-buttons="<%= job.id %>" style="margin: 0px; padding: 0px;">
-                <% if job.accepted? %>
-                  <% if job.done? %>
-                    <p><i class="fa fa-dot-circle-o" aria-hidden="true"></i>  Done</p>
-                  <% else %>
-                    <p><i class="fa fa-check-square-o" aria-hidden="true"></i>  Accepted</p>
-                  <% end %>
-                <% elsif job.accepted == false %>
-                    <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>  Declined</p>
-                <% else %>
-                  <p>Você quer aceitar esse job ?</p>
-                  <%= link_to  "Aceitar", job_accept_path(job), method: :patch, class: "btn btn-success", remote: true %>
-                  <%= link_to "Recusar", job_decline_path(job), method: :patch, class: "btn btn-danger", remote: true %>
-                <% end %>
-              </div>
-            </td>
+            <th>Event</th>
+            <th>Location</th>
+            <th>Date</th>
+            <th>Price</th>
+            <th>Status:</th>
           </tr>
-        </div>
-      <% end %>
-    </tbody>
-  </table>
+        </thead>
+        <tbody>
+          <% @professional.jobs.each do |job| %>
+            <div>
+              <tr>
+                <td><%= job.event.title %></td>
+                <td><%= job.event.location %></td>
+                <td><%= job.event.date %></td>
+                <td><%= job.price %></td>
+                <td>
+                  <div data-job-buttons="<%= job.id %>" style="margin: 0px; padding: 0px;">
+                    <% if job.accepted? %>
+                      <% if job.done? %>
+                        <p><i class="fa fa-dot-circle-o" aria-hidden="true"></i>  Done</p>
+                      <% else %>
+                        <p><i class="fa fa-check-square-o" aria-hidden="true"></i>  Accepted</p>
+                      <% end %>
+                    <% elsif job.accepted == false %>
+                        <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>  Declined</p>
+                    <% else %>
+                      <p>Você quer aceitar esse job ?</p>
+                      <%= link_to  "Aceitar", job_accept_path(job), method: :patch, class: "btn btn-success", remote: true %>
+                      <%= link_to "Recusar", job_decline_path(job), method: :patch, class: "btn btn-danger", remote: true %>
+                    <% end %>
+                  </div>
+                </td>
+              </tr>
+            </div>
+          <% end %>
+        </tbody>
+      </table>
+</div>
+</div>
 
 </div>
 
