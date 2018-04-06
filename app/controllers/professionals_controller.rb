@@ -10,7 +10,6 @@ class ProfessionalsController < ApplicationController
   end
 
   def update
-    raise
     @professional = current_user
     authorize @professional
     if params[:user]["availability"].present?
