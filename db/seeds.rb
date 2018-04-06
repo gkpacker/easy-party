@@ -10,7 +10,7 @@ require 'faker'
 options = ["Animação de Festas", "Assessor de Eventos", "Bandas e cantores", "Bartenders", "Brindes e lembrancinhas", "Buffet completo", "Churrasqueiro", "Confeiteira", "Decoração", "Djs", "Equipamento para festas", "Fotografia", "Garçons e Copeiras", "Gravação de vídeos", "Recepcionistas e cerimonialistas", "Segurança"]
 options.each do |option|
   categorie = Category.new(name: option)
-  categorie.save!
+  categorie.save
 end
 puts "Done ! #{Category.all.count} categories added to the database."
 
@@ -21,21 +21,21 @@ organizers = []
   organizer.last_name = Faker::Name.last_name.capitalize
   organizer.email = Faker::Internet.email
   organizer.password = "123456"
-  organizer.photo = Cloudinary::Uploader.upload(Faker::LoremPixel.image)
+  organizer.photo = 'http://res.cloudinary.com/gkpacker/image/upload/v1522986349/lgxb64u16wej1jlho84k.jpg'
   organizer.phone_number = Faker::PhoneNumber.phone_number
   organizer.role = "Organizador"
-  organizer.save!
+  organizer.save
   organizers << organizer
 end
 puts "Done ! #{User.where(role: 'Organizador').count} organizers added to the User database."
 
 professionals = []
-20.times do
+40.times do
   professional = User.new
   professional.first_name = Faker::Name.first_name
   professional.last_name = Faker::Name.last_name
   professional.email = Faker::Internet.email
-  professional.photo = Cloudinary::Uploader.upload(Faker::LoremPixel.image)
+  professional.photo = 'http://res.cloudinary.com/gkpacker/image/upload/v1522986349/lgxb64u16wej1jlho84k.jpg'
   professional.password = "123456"
   professional.phone_number = Faker::PhoneNumber.phone_number
   professional.role = "Profissional"
@@ -44,21 +44,21 @@ professionals = []
   professional.price_per_hour = %w(20 30 40 50 60 70 80 90 100).sample.to_i
   professional.city = %w(Pinheiros Morumbi Itaim Campinas Sorocaba Santos Jardins).sample
   professional.category = Category.all.sample
-  professional.save!
+  professional.save
   professionals << professional
 end
 puts "Done ! #{User.where(role: 'Profissional').count} professionals added to the User database."
 
 events = []
 titles = ["despedida de solteiro de ", "aniversario de ", "casamento de", "cocktail para", "housewarming de"]
-5.times do
+10.times do
   event = Event.new
   event.organizer = User.where(role: "Organizador").sample
   event.title = "#{titles.sample} #{Faker::Name.first_name.capitalize}"
   event.date = Faker::Date.forward(60)
   event.location = %w(Pinheiros Morumbi Itaim Campinas Sorocaba Santos Jardins).sample
   event.description = Faker::Lorem.paragraph
-  event.save!
+  event.save
   events << event
 end
 puts "Done ! #{Event.all.count} events added to the database."
@@ -72,7 +72,7 @@ jobs = []
   job.professional = User.where(role: "Profissional").sample
   job.rating = (1..5).to_a.sample
   job.comment = Faker::Lorem.paragraph
-  job.save!
+  job.save
   jobs << job
 end
 puts "Done ! #{Job.all.count} jobs added to the database."
