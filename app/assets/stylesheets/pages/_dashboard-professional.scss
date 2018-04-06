@@ -6,5 +6,27 @@ max-width: 450px;
 padding: 30px;
 border-radius: 10px;
 box-shadow: 0px 6px 15px -10px rgba(0,0,0,0.6);
+position: relative;
+padding-top: 50px;
 
+
+ &:hover {
+  .edit-icon {
+    display: inline-block;
+  }
+ }
+}
+
+
+
+.list-unstyled li {
+  display: block;
+  margin-top: 7px;
+
+}
+
+
+.list-unstyled strong {
+  color: #565757;
+  font-size: 14px;
 }
