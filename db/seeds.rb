@@ -12,22 +12,14 @@ require 'open-uri'
 categories = ["Animação de Festas de crianças", "Wedding Planner", "Banda", "Bartender", "Brindes e lembrancinhas", "Buffet completo", "Churrasqueiro", "Decoração", "Djs", "Fotografo", "Garçons e Copeiras", "Segurança"]
 prices = [50, 30, 100, 90, 30, 40, 40, 40, 150, 200, 60, 50]
 
-categories.each do |option|
-  category = Category.new(name: option)
-  category.save!
-end
-puts "Done ! #{Category.all.count} categories added to the database."
+# categories.each do |option|
+#   category = Category.new(name: option)
+#   category.save
+# end
+# puts "Done ! #{Category.all.count} categories added to the database."
 
 # --------- Seeding Users DB --------- #
 # 1) ------ Organizers ------- #
-
-# organizer_first_names = %w(mathieu roberto marcelo diego)
-# organizer_last_names = ["le roux", "barros", "de polli", "van dyk"]
-# organizer_usernames = %w(matleroux robertobarros mdepolli diegolearnstocode)
-
-# professional_first_names = %w(andré bruno césar daniel daniel danielle fabricio marcos miguel oscar rodrigo thiago val)
-# professional_last_names = %w(miotto parga fuster carvalho topper alvino zanette scorzoni aguirre ortiz arroyo scatigno prando)
-# professional_usernames = %w(andremiotto brunoparga cesarfuster danielbpc2 dantopper danialvino fdzanette mscorzoni migueldaguirre oscarlaf03 rodjra tgiliberti vcprando)
 
 5.times do
   organizer = User.new
@@ -42,7 +34,7 @@ puts "Done ! #{Category.all.count} categories added to the database."
   organizer.remote_photo_url = user["picture"]["large"]
   organizer.role = "Organizador"
 
-  organizer.save!
+  organizer.save
 end
 
 puts "Done ! #{User.where(role: 'Organizador').count} organizers added to the User database."
@@ -69,7 +61,7 @@ puts "Done ! #{User.where(role: 'Organizador').count} organizers added to the Us
   professional.category = Category.all.sample
   professional.price_per_hour = prices[random_index]
 
-  professional.save!
+  professional.save
 end
 
 puts "Done ! #{User.where(role: 'Profissional').count} professionals added to the User database."
@@ -83,7 +75,7 @@ titles = ["despedida de solteiro de ", "aniversario de ", "casamento de", "cockt
   event.date = Faker::Date.forward(60)
   event.location = %w(Pinheiros Morumbi Itaim Campinas Sorocaba Santos Jardins).sample
   event.description = Faker::Lorem.paragraph
-  event.save!
+  event.save
 end
 puts "Done ! #{Event.all.count} events added to the database."
 
@@ -105,6 +97,6 @@ jobs = []
       end
     end
   end
-  job.save!
+  job.save
 end
 puts "Done ! #{Job.all.count} jobs added to the database."
