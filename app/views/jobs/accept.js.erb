@@ -1,8 +1,8 @@
-function refreshStatus() {
+function acceptStatus() {
   const item = document.querySelector("[data-job-buttons='<%= @job.id %>']")
   item.innerHTML = ""
   item.insertAdjacentHTML('beforeend', '<p><i class="fa fa-check-square-o" aria-hidden="true"></i>  Accepted</p>');
 };
 
-refreshStatus()
+acceptStatus()
 
