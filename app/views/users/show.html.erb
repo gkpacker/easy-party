@@ -1,10 +1,39 @@
 <div class="container">
-  <h3>Saiba mais sobre <%= @professional.first_name + " " + @professional.last_name %></h3>
-  <% unless @professional.category.nil? %>
-    <h4><strong>Especialidade: </strong><%= @professional.category.name %></h4>
-    <h4><strong>Disponibilidade: </strong><%= @professional.availability %></h4>
-    <h4><strong>Tarifa: </strong> R$ <%= @professional.price_per_hour %> por hora</h4>
-    <h4><strong>Area de atuação: </strong><%= @professional.city %></h4>
+  <div class="row row-professional-show">
+    <div class="col-xs-6">
+      <% unless @professional.category.nil? %>
+      <%= cl_image_tag @professional.photo, width: 450 %>
+    </div>
+
+    <div class="col-xs-6">
+      <div class="info-professional-wrap">
+        <h4>
+          <%= @professional.first_name + " " + @professional.last_name %>
+        </h4>
+        <p>
+          <%= @professional.category.name %>
+        </p>
+        <h4>
+          <strong>Disponibilidade: </strong>
+          <%= @professional.availability %>
+        </h4>
+        <h4>
+          <strong>Tarifa: </strong>
+          R$ <%= @professional.price_per_hour %> por hora
+        </h4>
+        <h4><strong>Area de atuação: </strong>
+          <%= @professional.city %>
+        </h4>
+        <% if user_signed_in? == false || current_user.role == "Organizador"%><% end %>
+        <p><%= link_to "Enviar uma proposta de job", new_user_job_path(@professional), class: "btn-easy btn-proposta" %></p>
+      </div>
+    </div>
+
+
+
+
+
+  <div class="col-xs-12">
     <h4><strong>Comentarios de outros organizadores de eventos:</strong></h4>
     <% if (@jobs == nil) || (@jobs == []) %>
       <p><em><%= @professional.first_name %> ainda não tem sido avaliado!</em></p>
@@ -23,9 +52,11 @@
       <% end %>
     <% end %>
   <% end %>
+</div>
+<div class="col-xs-12">
 
   <p><%= link_to "Back to home", root_path %></p>
-  <% if user_signed_in? == false || current_user.role == "Organizador"  %>
-    <p><%= link_to "Enviar uma proposta de job", new_user_job_path(@professional) %></p>
-  <% end %>
+
+</div>
+</div>
 </div>
