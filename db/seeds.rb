@@ -6,47 +6,73 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
+require 'open-uri'
 
-options = ["Animação de Festas", "Assessor de Eventos", "Bandas e cantores", "Bartenders", "Brindes e lembrancinhas", "Buffet completo", "Churrasqueiro", "Confeiteira", "Decoração", "Djs", "Equipamento para festas", "Fotografia", "Garçons e Copeiras", "Gravação de vídeos", "Recepcionistas e cerimonialistas", "Segurança"]
-options.each do |option|
-  categorie = Category.new(name: option)
-  categorie.save!
+# --------- Seeding categories DB --------- #
+categories = ["Animação de Festas de crianças", "Wedding Planner", "Banda", "Bartender", "Brindes e lembrancinhas", "Buffet completo", "Churrasqueiro", "Decoração", "Djs", "Fotografo", "Garçons e Copeiras", "Segurança"]
+prices = [50, 30, 100, 90, 30, 40, 40, 40, 150, 200, 60, 50]
+
+categories.each do |option|
+  category = Category.new(name: option)
+  category.save!
 end
 puts "Done ! #{Category.all.count} categories added to the database."
 
+# --------- Seeding Users DB --------- #
+# 1) ------ Organizers ------- #
 organizers = []
-10.times do
+
+organizer_first_names = %w(mathieu roberto marcelo diego)
+organizer_last_names = ["le roux", "barros", "de polli", "van dyk"]
+organizer_usernames = %w(matleroux robertobarros mdepolli diegolearnstocode)
+
+professional_first_names = %w(andré bruno césar daniel daniel danielle fabricio marcos miguel oscar rodrigo thiago val)
+professional_last_names = %w(miotto parga fuster carvalho topper alvino zanette scorzoni aguirre ortiz arroyo scatigno prando)
+professional_usernames = %w(andremiotto brunoparga cesarfuster danielbpc2 dantopper danialvino fdzanette mscorzoni migueldaguirre oscarlaf03 rodjra tgiliberti vcprando)
+
+5.times do
   organizer = User.new
-  organizer.first_name = Faker::Name.first_name.capitalize
-  organizer.last_name = Faker::Name.last_name.capitalize
-  organizer.email = Faker::Internet.email
+
+  user = JSON.parse(open('https://randomuser.me/api/').read)['results'].first
+
+  organizer.first_name = user["name"]["first"].capitalize
+  organizer.last_name = user["name"]["last"] .capitalize
+  organizer.email = user["email"]
+  organizer.phone_number = user["phone"]
   organizer.password = "123456"
-  organizer.photo = Cloudinary::Uploader.upload(Faker::LoremPixel.image)
-  organizer.phone_number = Faker::PhoneNumber.phone_number
+  organizer.remote_photo_url = user["picture"]["large"]
   organizer.role = "Organizador"
+
   organizer.save!
-  organizers << organizer
 end
+
 puts "Done ! #{User.where(role: 'Organizador').count} organizers added to the User database."
 
-professionals = []
-20.times do
+# 2) ------ Professionals ------- #
+15.times do
   professional = User.new
-  professional.first_name = Faker::Name.first_name
-  professional.last_name = Faker::Name.last_name
-  professional.email = Faker::Internet.email
-  professional.photo = Cloudinary::Uploader.upload(Faker::LoremPixel.image)
+
+  user = JSON.parse(open('https://randomuser.me/api/').read)['results'].first
+
+  professional.first_name = user["name"]["first"].capitalize
+  professional.last_name = user["name"]["last"] .capitalize
+  professional.email = user["email"]
+  professional.phone_number = user["phone"]
   professional.password = "123456"
-  professional.phone_number = Faker::PhoneNumber.phone_number
+  professional.remote_photo_url = user["picture"]["large"]
   professional.role = "Profissional"
-  random_number = (1..8).to_a.sample
-  professional.availability = %w(Segunda Terça Quarta Quinta Sexta Sábado Domingo).sample(random_number)
-  professional.price_per_hour = %w(20 30 40 50 60 70 80 90 100).sample.to_i
+
+  random_day = (1..7).to_a.sample
+  professional.availability = %w(Segunda Terça Quarta Quinta Sexta Sábado Domingo).sample(random_day)
   professional.city = %w(Pinheiros Morumbi Itaim Campinas Sorocaba Santos Jardins).sample
+
+  random_index = (0..11).to_a.sample
   professional.category = Category.all.sample
+  professional.price_per_hour = prices[random_index]
+
   professional.save!
-  professionals << professional
 end
+
 puts "Done ! #{User.where(role: 'Profissional').count} professionals added to the User database."
 
 events = []
@@ -54,7 +80,7 @@ titles = ["despedida de solteiro de ", "aniversario de ", "casamento de", "cockt
 5.times do
   event = Event.new
   event.organizer = User.where(role: "Organizador").sample
-  event.title = "#{titles.sample} #{Faker::Name.first_name.capitalize}"
+  event.title = "#{titles.sample.capitalize} #{Faker::Name.first_name.capitalize}"
   event.date = Faker::Date.forward(60)
   event.location = %w(Pinheiros Morumbi Itaim Campinas Sorocaba Santos Jardins).sample
   event.description = Faker::Lorem.paragraph
@@ -67,11 +93,9 @@ puts "Done ! #{Event.all.count} events added to the database."
 jobs = []
 15.times do
   job = Job.new
-  job.price = %w(20 30 40 50 60 70 80 90 100).sample.to_i
   job.event = Event.all.sample
   job.professional = User.where(role: "Profissional").sample
-  job.rating = (1..5).to_a.sample
-  job.comment = Faker::Lorem.paragraph
+  job.price = job.professional.price_per_hour
   job.save!
   jobs << job
 end
