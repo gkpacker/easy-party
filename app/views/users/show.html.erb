@@ -19,5 +19,7 @@
   <% end %>
 
   <p><%= link_to "Back to home", root_path %></p>
-  <p><%= link_to "Enviar uma proposta de job", new_user_job_path(@professional) %></p>
+  <% if user_signed_in? == false || current_user.role == "Organizador"  %>
+    <p><%= link_to "Enviar uma proposta de job", new_user_job_path(@professional) %></p>
+  <% end %>
 </div>
