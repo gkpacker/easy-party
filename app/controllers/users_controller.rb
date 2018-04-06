@@ -24,6 +24,7 @@ class UsersController < ApplicationController
 
   def show
     @professional = User.find(params[:id])
+    @jobs = @professional.jobs
   end
 
   def new
