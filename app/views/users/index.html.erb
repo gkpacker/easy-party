@@ -1,15 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-3 col-sm-3">
-      <div class="search-filter">
-        <div class="text-left">
-          <p>Organizar por:</p>
-        </div>
-        <%= link_to "Nome", users_path(request.params.merge(order_query: "first_name")), class: "btn btn-sm btn-easy" %>
-        <br><br>
-        <%= link_to "Região", users_path(request.params.merge(order_query: "city")), class: "btn btn-sm btn-easy" %>
-      </div>
-    </div>
+
 
     <div class="col-xs-9 col-sm-9">
       <% if @search == "" %>
@@ -32,6 +23,9 @@
           <% end %>
         <% end %>
       <% end %>
+    </div>
+     <div class="col-xs-3 col-sm-3">
+
     </div>
   </div>
 </div>

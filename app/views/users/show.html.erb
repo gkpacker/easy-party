@@ -1,17 +1,36 @@
 <div class="container">
-  <div class="row">
+  <div class="row row-professional-show">
     <div class="col-xs-6">
+      <% unless @professional.category.nil? %>
+      <%= cl_image_tag @professional.photo, width: 450 %>
+    </div>
 
-  <h4><%= @professional.first_name + " " + @professional.last_name %></h4>
-  <p><%= @professional.category.name %></p>
-  <% unless @professional.category.nil? %>
-   <%= cl_image_tag @professional.photo, width: 500 %>
- </div>
-  <div class="col-xs-6">
-    <h4><strong>Disponibilidade: </strong><%= @professional.availability %></h4>
-    <h4><strong>Tarifa: </strong> R$ <%= @professional.price_per_hour %> por hora</h4>
-    <h4><strong>Area de atuação: </strong><%= @professional.city %></h4>
-     </div>
+    <div class="col-xs-6">
+      <div class="info-professional-wrap">
+        <h4>
+          <%= @professional.first_name + " " + @professional.last_name %>
+        </h4>
+        <p>
+          <%= @professional.category.name %>
+        </p>
+        <h4>
+          <strong>Disponibilidade: </strong>
+          <%= @professional.availability %>
+        </h4>
+        <h4>
+          <strong>Tarifa: </strong>
+          R$ <%= @professional.price_per_hour %> por hora
+        </h4>
+        <h4><strong>Area de atuação: </strong>
+          <%= @professional.city %>
+        </h4>
+        <% if user_signed_in? == false || current_user.role == "Organizador"%><% end %>
+        <p><%= link_to "Enviar uma proposta de job", new_user_job_path(@professional), class: "btn-easy btn-proposta" %></p>
+      </div>
+    </div>
+
+
+
 
 
   <div class="col-xs-12">
@@ -35,10 +54,9 @@
   <% end %>
 </div>
 <div class="col-xs-12">
+
   <p><%= link_to "Back to home", root_path %></p>
-  <% if user_signed_in? == false || current_user.role == "Organizador"  %>
-    <p><%= link_to "Enviar uma proposta de job", new_user_job_path(@professional) %></p>
-  <% end %>
+
 </div>
 </div>
 </div>
