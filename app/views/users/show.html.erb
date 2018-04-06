@@ -6,18 +6,22 @@
     <h4><strong>Tarifa: </strong> R$ <%= @professional.price_per_hour %> por hora</h4>
     <h4><strong>Area de atuação: </strong><%= @professional.city %></h4>
     <h4><strong>Comentarios de outros organizadores de eventos:</strong></h4>
-    <% if (@jobs != nil) && (@jobs != []) %>
+    <% if (@jobs == nil) || (@jobs == []) %>
+      <p><em><%= @professional.first_name %> ainda não tem sido avaliado!</em></p>
+    <% else %>
       <% @jobs.each do |job| %>
-        <% unless job.event.nil? %>
-
-        <p>----------------------------------------------------------</p>
-          <p>Rating de <strong><%= job.event.organizer.first_name + " " + job.event.organizer.last_name %></strong>, quem trabalhou com <strong><%= @professional.first_name %></strong> para seu evento no <strong><%= job.event.date %></strong></p>
-          <p><strong>Nota : </strong><%= job.rating %></p>
-          <p><strong>Comentario : </strong><%= job.comment %></p>
+        <% if job.done %>
+          <p>----------------------------------------------------------</p>
+          <% if job.rating %>
+            <p>Rating de <strong><%= job.event.organizer.first_name + " " + job.event.organizer.last_name %></strong>, quem trabalhou com <strong><%= @professional.first_name %></strong> para seu evento no <strong><%= job.event.date %></strong></p>
+            <p><strong>Nota : </strong><%= job.rating %></p>
+            <p><strong>Comentario : </strong><%= job.comment %></p>
+          <% else %>
+            <p><strong><%= @professional.first_name %></strong> trabalhou no <strong><%= job.event.date %></strong> no evento do <strong><%= job.event.organizer.first_name + " " + job.event.organizer.last_name %></strong>, quem não deixou avaliação ainda.</p>
+          <% end %>
         <% end %>
       <% end %>
     <% end %>
-        <p><em><%= @professional.first_name %> ainda não tem sido avaliado!</em></p>
   <% end %>
 
   <p><%= link_to "Back to home", root_path %></p>
