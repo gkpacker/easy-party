@@ -1,0 +1,25 @@
+.head-show-event {
+  background-color: #FF0073;
+  padding: 10px;
+  color: white;
+
+}
+
+.table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
+  border: none;
+}
+
+.fa-pencil {
+  font-size: 18px;
+  &:hover {
+    color: #ff0073;
+  }
+
+}
+
+.fa-trash {
+  font-size: 18px;
+  &:hover {
+    color: #ff0073;
+  }
+}
